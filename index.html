@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ex3 Dice Roller</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script language="javascript" src="lz-string.min.js"></script>
+    <script src="Ex3DiceRoll.js"></script>
+	<link rel="stylesheet" type="text/css" href="Ex3DiceRoll.css" />
+</head>
+<body>
+
+<h2>Dice Pool Roller</h2>
+
+<p>Adjust your dice pool, set the options, and roll away!<br/>Hit "Info" to see a verification code that other people can paste into the box at the bottom of the page.</p>
+
+<form>
+<table class="hasborder">
+<tr class="hasborder"><td colspan="2">
+    <strong>Dice Pool:</strong> <input type="number" name="dicepool" value="10" >
+    <strong>TN:</strong> <input type="number" name="targetnumber" value="7">
+</td></tr>
+<tr><td class="leftheader">
+    <strong>Doubles:</strong>
+</td>
+<td>
+    10<input type="checkbox" name="double10" checked>
+    9<input type="checkbox" name="double9">
+    8<input type="checkbox" name="double8">
+    7<input type="checkbox" name="double7">
+    6<input type="checkbox" name="double6">
+    5<input type="checkbox" name="double5">
+    4<input type="checkbox" name="double4">
+    3<input type="checkbox" name="double3">
+    2<input type="checkbox" name="double2">
+    1<input type="checkbox" name="double1">
+</td></tr>
+<tr>
+<td></td>
+<td>
+    Ones Subtract <input type="checkbox" name="onessubtract" id="onessubtract"> 
+</td></tr>
+<tr class="topborder"><td class="leftheader">
+    <strong>Rerolls:</strong>
+</td>
+<td>
+    10<input type="checkbox" name="reroll10">
+    9<input type="checkbox" name="reroll9">
+    8<input type="checkbox" name="reroll8">
+    7<input type="checkbox" name="reroll7">
+    6<input type="checkbox" name="reroll6">
+    5<input type="checkbox" name="reroll5">
+    4<input type="checkbox" name="reroll4">
+    3<input type="checkbox" name="reroll3">
+    2<input type="checkbox" name="reroll2">
+    1<input type="checkbox" name="reroll1"><br>
+</td></tr>
+<tr>
+<td></td>
+<td>
+    Reroll once <input type="checkbox" name="rerollonce" id="rerollonce" checked> 
+    Reroll until gone <input type="checkbox" name="rerollforever" id="rerollforever">
+</td></tr>
+<tr class="hasborder"><td colspan="2">
+    <input type="button" name="roll" value="Roll" id="roll">
+</td></tr>
+</table>
+</form>
+
+<p><strong>Result:</strong></p>
+<div class="clearable" id="result" role="status" aria-live="polite"></div>
+<div class="clearable" id="oldresults"></div>
+<button id="clear">Clear results</button>
+
+<hr/>
+
+<h2>Verify rolled result</h2>
+<form>
+    <input type="text" value="paste gibberish here" name="gibberish" id="gibberish">
+    <input type="button" name="decode" value="Decode" id="decode">
+</form>
+
+<p><strong>Result:</strong></p>
+<div id="decoded"></div>
+
+</body>
+</html>

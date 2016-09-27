@@ -36,7 +36,17 @@ body {
     font-family: Verdana, sans-serif;
 }
 
-h2 {
-    color: #c90;
+h1 {
+    color: #b80;
     font-variant: small-caps;
+    margin: 0px 0px 8px 0px;
 }
+
+.titletopper {
+    margin: 0px;
+    padding: 0px;
+    color: #b80;
+    font-variant: small-caps;    
+    font-weight: bold;
+}
+

@@ -8,6 +8,7 @@ $(document).ready(function(){
     var lastDateStamp = 'Never';
     var lastSuccesses = 'n/a'
 
+    // Clear old results off the screen.
     $('#clear').on('click tap', function(){
         $(".clearable").empty();
     });
@@ -25,21 +26,16 @@ $(document).ready(function(){
         var encodedstring = '';
         var datestamp = new Date();
         
-        
         var oncebutton = $('#rerollonce');
         var foreverbutton = $('#rerollforever');
         var onessubtract = $('#onessubtract');
 
+        // Rerolling a number "forever" means until no dice show that number.
+        // Need to check as soon as we get to the page, and then set based on user selections.
         if(oncebutton.is(':checked')){
             options.rerollForever = false;
         }else{
             options.rerollForever = true;
-        }
-        
-        if(onessubtract.is(':checked')){
-            onesSubtract = true;
-        }else{
-            onesSubtract = false;
         }
         
         oncebutton.on('click tap', function(){
@@ -51,12 +47,22 @@ $(document).ready(function(){
             oncebutton.prop("checked", false);
         });
         
+        
+        // Do 1's reduce the number of successes you rolled?
+        if(onessubtract.is(':checked')){
+            onesSubtract = true;
+        }else{
+            onesSubtract = false;
+        }
+
+        // Doubles count as 2 successes.
         var doublesArray = getDiceChecks('double');
         options.doublesArray = doublesArray;
 
         var rerollArray = getDiceChecks('reroll');
         options.rerollArray = rerollArray;
 
+        // Make the array that has all our raw dice roll results.
         for(var i = 0; i < dicePool; i++){
             var thisDie = rollDie(options);
             resultsArray.push(thisDie);
@@ -64,7 +70,8 @@ $(document).ready(function(){
             if(thisDie == 1 && onesSubtract) {successes -= 1;}
             if(doublesArray.indexOf(thisDie) != -1){successes += 1;}
         }
-
+        
+        // Botching: No successes and at least one 1 showing.
         if(successes <= 0){
             if(resultsArray.indexOf(1) != -1){
                 botched = true
@@ -83,7 +90,6 @@ $(document).ready(function(){
             }
         }
         
-        
         buttonCode = '<button class="showbutton showvcode' + vcounter + '">Info</button>';
 
         infoString = 'Timestamp: '
@@ -91,6 +97,7 @@ $(document).ready(function(){
             + '<br/>Last roll: '
             + lastSuccesses;
 
+        // Some of the results are encoded in the "secret code" gibberish.
         encodedstring = LZString.compressToUTF16(resultsString + '<br/>' + infoString);
 
         verificationCode = 'Verification Code:<br/>' + encodedstring;
@@ -104,10 +111,12 @@ $(document).ready(function(){
             + '</span></p>'
         );
 
+        // We intentionally only let people get the share code for their most recent roll.
         $('.showvcode' + (vcounter-1) ).remove();
         $('.vcode' + (vcounter-1) ).remove();
         $('#result' + (vcounter-1) ).detach().prependTo(oldResultsArea);
 
+        // Don't need to have the gibberish code there all the time.
         $('.showvcode'+vcounter).on('click tap', function() {
             var myClass = this.className;
             var codeNumber = myClass.split(/\s+/)[1].replace('showvcode', '');
@@ -120,6 +129,7 @@ $(document).ready(function(){
 
     });
 
+    // Undo the gibberish code to show the original roll.
     $('#decode').on('click tap', function(){
         
         encodedString = $('#gibberish').val();
@@ -128,12 +138,13 @@ $(document).ready(function(){
 
     });
 
+    // Returns a single die result.
     function rollDie(options){
         var result = Math.ceil(Math.random() * 10);
         
         // Check for rerolls. Two different types.
         if(options.rerollForever == false){
-            // Reroll once?
+            // Reroll once? No recursion.
             if(options.rerollArray.indexOf(result) != -1){
                 return Math.ceil(Math.random() * 10);
             }else{
@@ -141,7 +152,7 @@ $(document).ready(function(){
             }        
         }
         else{
-            // Reroll infinite times?
+            // Reroll forever? Uses recursion.
             if(options.rerollArray.indexOf(result) != -1){
                 return rollDie(options);
             }else{
@@ -150,6 +161,7 @@ $(document).ready(function(){
         }
     }
     
+    // Returns an array saying which numbers have been checked off.
     function getDiceChecks(type){
         var result = []
         

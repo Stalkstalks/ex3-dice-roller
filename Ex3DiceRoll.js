@@ -62,13 +62,14 @@ $(document).ready(function(){
         var rerollArray = getDiceChecks('reroll');
         options.rerollArray = rerollArray;
 
+        console.log('rolling dice');
         // Make the array that has all our raw dice roll results.
         for(var i = 0; i < dicePool; i++){
-            var thisDie = rollDie(options);
-            resultsArray.push(thisDie);
-            if(thisDie >= targetNumber){successes += 1;}
-            if(thisDie == 1 && onesSubtract) {successes -= 1;}
-            if(doublesArray.indexOf(thisDie) != -1){successes += 1;}
+            var thisDie = rollDie(options, targetNumber, doublesArray, 0);
+            console.log(thisDie);
+            resultsArray.push(thisDie.result);
+            if(thisDie.result == 1 && onesSubtract) {successes -= 1;}
+            successes += thisDie.bonus;
         }
         
         // Botching: No successes and at least one 1 showing.
@@ -139,24 +140,32 @@ $(document).ready(function(){
     });
 
     // Returns a single die result.
-    function rollDie(options){
+    function rollDie(options, targetNumber, doublesArray, bonus){
         var result = Math.ceil(Math.random() * 10);
+        
+        // Need to keep successes on rerolls!
+        if(result >= targetNumber){bonus += 1;}
+        if(doublesArray.indexOf(result) != -1){bonus += 1;}
+
         
         // Check for rerolls. Two different types.
         if(options.rerollForever == false){
             // Reroll once? No recursion.
             if(options.rerollArray.indexOf(result) != -1){
-                return Math.ceil(Math.random() * 10);
+                var newResult = Math.ceil(Math.random() * 10);
+                if(newResult >= targetNumber){bonus += 1;}
+                if(doublesArray.indexOf(newResult) != -1){bonus += 1;}
+                return { result: newResult, bonus: bonus};
             }else{
-                return result;
+                return { result: result, bonus: bonus };
             }        
         }
         else{
             // Reroll forever? Uses recursion.
             if(options.rerollArray.indexOf(result) != -1){
-                return rollDie(options);
+                return rollDie(options, targetNumber, doublesArray, bonus);
             }else{
-                return result;
+                return { result: result, bonus: bonus };
             }
         }
     }

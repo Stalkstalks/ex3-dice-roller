@@ -64,12 +64,11 @@ $(document).ready(function(){
 
         // Make the array that has all our raw dice roll results.
         for(var i = 0; i < dicePool; i++){
-            var thisDie = rollDie(options, targetNumber, doublesArray, 0);
-            resultsArray.push(thisDie.result);
-            if(thisDie.result >= targetNumber){successes += 1;}
-            if(thisDie.result == 1 && onesSubtract) {successes -= 1;}
-            if(doublesArray.indexOf(thisDie.result) != -1){successes += 1;}
-            successes += thisDie.bonus;
+            var thisDie = rollDie(options, targetNumber, doublesArray);
+            resultsArray.push(thisDie);
+            if(thisDie >= targetNumber){successes += 1;}
+            if(thisDie == 1 && onesSubtract) {successes -= 1;}
+            if(doublesArray.indexOf(thisDie) != -1){successes += 1;}
         }
         
         // Botching: No successes and at least one 1 showing.
@@ -140,12 +139,12 @@ $(document).ready(function(){
     });
 
     // Returns a single die result.
-    function rollDie(options, targetNumber, doublesArray, extraSuccesses){
+    function rollDie(options, targetNumber, doublesArray){
         var result = Math.ceil(Math.random() * 10);
 
         // Keep Successes seems to be a general rule.
-        if(result >= targetNumber){extraSuccesses += 1;}
-        if(doublesArray.indexOf(result) != -1){extraSuccesses += 1;}
+        if(result >= targetNumber){successes += 1;}
+        if(doublesArray.indexOf(thisDie) != -1){successes += 1;}
         
         // Check for rerolls. Two different types.
         if(options.rerollForever == false){
@@ -153,15 +152,15 @@ $(document).ready(function(){
             if(options.rerollArray.indexOf(result) != -1){
                 return Math.ceil(Math.random() * 10);
             }else{
-                return {'result': result, 'bonus': extraSuccesses};
+                return result;
             }        
         }
         else{
             // Reroll forever? Uses recursion.
             if(options.rerollArray.indexOf(result) != -1){
-                return rollDie(options, targetNumber, doublesArray, extraSuccesses);
+                return rollDie(options, targetNumber, doublesArray);
             }else{
-                return {'result': result, 'bonus': extraSuccesses};
+                return result;
             }
         }
     }

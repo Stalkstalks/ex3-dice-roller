@@ -136,6 +136,7 @@ $(document).ready(function(){
 
     // Returns a single die result.
     function rollDie(options, targetNumber, doublesArray, bonus){
+        console.log(options);
         var result = Math.ceil(Math.random() * 10);
         
         // Need to keep successes on rerolls!
@@ -165,10 +166,7 @@ $(document).ready(function(){
         }
         else{
             // No rerolls.
-            var newResult = Math.ceil(Math.random() * 10);
-            if(newResult >= targetNumber){bonus += 1;}
-            if(doublesArray.indexOf(newResult) != -1){bonus += 1;}
-            return { result: newResult, bonus: bonus };
+            return { result: result, bonus: bonus };
         }
     }
     

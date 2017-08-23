@@ -7,6 +7,7 @@ $(document).ready(function(){
     var vcounter = 0;
     var lastDateStamp = 'Never';
     var lastSuccesses = 'n/a'
+    var options = {};
 
     // Clear old results off the screen.
     $('#clear').on('click tap', function(){
@@ -34,7 +35,6 @@ $(document).ready(function(){
         var resultsArray = [];
         var resultsString = '';
         var successes = 0;
-        var options = {};
         var botched = false;
         var onesSubtract = false;
         var encodedstring = '';

@@ -41,10 +41,12 @@ $(document).ready(function(){
         oncebutton.on('click tap', function(){
             options.rerollForever = false;
             foreverbutton.prop("checked", false);
+            console.log('reroll forever button unchecked');
         });
         foreverbutton.on('click tap', function(){
             options.rerollForever = true;
             oncebutton.prop("checked", false);
+            console.log('reroll once button unchecked');
         });
         
         

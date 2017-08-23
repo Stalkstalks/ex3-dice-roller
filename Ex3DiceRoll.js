@@ -13,6 +13,20 @@ $(document).ready(function(){
         $(".clearable").empty();
     });
 
+    var oncebutton = $('#rerollonce');
+    var foreverbutton = $('#rerollforever');
+
+    oncebutton.on('change', function(){
+        options.rerollForever = false;
+        foreverbutton.prop("checked", false);
+        console.log('reroll forever button unchecked');
+    });
+    foreverbutton.on('change', function(){
+        options.rerollForever = true;
+        oncebutton.prop("checked", false);
+        console.log('reroll once button unchecked');
+    });
+
     $('#roll').on('click tap', function(){
 
         var dicePool = $('input[name="dicepool"]').val();
@@ -26,8 +40,6 @@ $(document).ready(function(){
         var encodedstring = '';
         var datestamp = new Date();
         
-        var oncebutton = $('#rerollonce');
-        var foreverbutton = $('#rerollforever');
         var onessubtract = $('#onessubtract');
 
         // Rerolling a number "forever" means until no dice show that number.
@@ -36,19 +48,7 @@ $(document).ready(function(){
             options.rerollForever = false;
         }else{
             options.rerollForever = true;
-        }
-        
-        oncebutton.on('change', function(){
-            options.rerollForever = false;
-            foreverbutton.prop("checked", false);
-            console.log('reroll forever button unchecked');
-        });
-        foreverbutton.on('change', function(){
-            options.rerollForever = true;
-            oncebutton.prop("checked", false);
-            console.log('reroll once button unchecked');
-        });
-        
+        }        
         
         // Do 1's reduce the number of successes you rolled?
         if(onessubtract.is(':checked')){

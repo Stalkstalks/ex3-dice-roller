@@ -38,12 +38,12 @@ $(document).ready(function(){
             options.rerollForever = true;
         }
         
-        oncebutton.on('click tap', function(){
+        oncebutton.on('change', function(){
             options.rerollForever = false;
             foreverbutton.prop("checked", false);
             console.log('reroll forever button unchecked');
         });
-        foreverbutton.on('click tap', function(){
+        foreverbutton.on('change', function(){
             options.rerollForever = true;
             oncebutton.prop("checked", false);
             console.log('reroll once button unchecked');

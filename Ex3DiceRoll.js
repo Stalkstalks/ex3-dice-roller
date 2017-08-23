@@ -17,16 +17,8 @@ $(document).ready(function(){
     var oncebutton = $('#rerollonce');
     var foreverbutton = $('#rerollforever');
 
-    oncebutton.on('change', function(){
-        options.rerollForever = false;
-        foreverbutton.prop("checked", false);
-        console.log('reroll forever button unchecked');
-    });
-    foreverbutton.on('change', function(){
-        options.rerollForever = true;
-        oncebutton.prop("checked", false);
-        console.log('reroll once button unchecked');
-    });
+    oncebutton.on('change', function(){ options.reroll = checkBoxChecker('once'); });
+    foreverbutton.on('change', function(){ options.reroll = checkBoxChecker('forever'); });
 
     $('#roll').on('click tap', function(){
 
@@ -151,24 +143,31 @@ $(document).ready(function(){
 
         
         // Check for rerolls. Two different types.
-        if(options.rerollForever == false){
+        if(options.reroll.once == true){
             // Reroll once? No recursion.
             if(options.rerollArray.indexOf(result) != -1){
                 var newResult = Math.ceil(Math.random() * 10);
                 if(newResult >= targetNumber){bonus += 1;}
                 if(doublesArray.indexOf(newResult) != -1){bonus += 1;}
-                return { result: newResult, bonus: bonus};
+                return { result: newResult, bonus: bonus };
             }else{
                 return { result: result, bonus: bonus };
             }        
         }
-        else{
+        else if(options.reroll.forever == true){
             // Reroll forever? Uses recursion.
             if(options.rerollArray.indexOf(result) != -1){
                 return rollDie(options, targetNumber, doublesArray, bonus);
             }else{
                 return { result: result, bonus: bonus };
             }
+        }
+        else{
+            // No rerolls.
+            var newResult = Math.ceil(Math.random() * 10);
+            if(newResult >= targetNumber){bonus += 1;}
+            if(doublesArray.indexOf(newResult) != -1){bonus += 1;}
+            return { result: newResult, bonus: bonus };
         }
     }
     
@@ -184,5 +183,27 @@ $(document).ready(function(){
         }
 
         return result;
+    }
+    
+    function checkBoxChecker(box){
+        var once = false;
+        var forever = false;
+        
+        if(box == 'once'){
+            if(oncebutton.is(':checked')){
+                foreverbutton.prop("checked", false);
+                once = true;
+                console.log('reroll once');
+            }
+        }
+        else{
+            if(foreverbutton.is(':checked')){
+                oncebutton.prop("checked", false);
+                forever = true;
+                console.log('reroll forever');
+            }
+        }
+        
+        return {once: once, forever: forever}
     }
 });

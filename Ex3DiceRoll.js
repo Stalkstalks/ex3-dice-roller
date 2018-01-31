@@ -6,7 +6,7 @@ $(document).ready(function(){
     var decodeArea = $('#decoded');
     var vcounter = 0;
     var lastDateStamp = 'Never';
-    var lastSuccesses = 'n/a'
+    var lastSuccesses = 'n/a';
     var options = {};
 
     // Clear old results off the screen.
@@ -70,7 +70,7 @@ $(document).ready(function(){
         // Botching: No successes and at least one 1 showing.
         if(successes <= 0){
             if(resultsArray.indexOf(1) != -1){
-                botched = true
+                botched = true;
             }
         }
 
@@ -86,17 +86,17 @@ $(document).ready(function(){
             }
         }
         
-        buttonCode = '<button class="showbutton showvcode' + vcounter + '">Info</button>';
+        var buttonCode = '<button class="showbutton showvcode' + vcounter + '">Info</button>';
 
-        infoString = 'Timestamp: '
+        var infoString = 'Timestamp: '
             + datestamp.toUTCString()
             + '<br/>Last roll: '
             + lastSuccesses;
 
         // Some of the results are encoded in the "secret code" gibberish.
-        encodedstring = LZString.compressToUTF16(resultsString + '<br/>' + infoString);
+        var encodedstring = LZString.compressToUTF16(resultsString + '<br/>' + infoString);
 
-        verificationCode = 'Verification Code:<br/>' + encodedstring;
+        var verificationCode = 'Verification Code:<br/>' + encodedstring;
 
         resultsArea.prepend('<p id=result' + vcounter + '>'
             + resultsString
@@ -128,8 +128,8 @@ $(document).ready(function(){
     // Undo the gibberish code to show the original roll.
     $('#decode').on('click tap', function(){
         
-        encodedString = $('#gibberish').val();
-        decodedString = LZString.decompressFromUTF16(encodedString);
+        var encodedString = $('#gibberish').val();
+        var decodedString = LZString.decompressFromUTF16(encodedString);
         decodeArea.prepend('<p>' + decodedString + '</p>');
 
     });
@@ -145,7 +145,7 @@ $(document).ready(function(){
 
         
         // Check for rerolls. Two different types.
-        if(options.reroll.once == true){
+        if(options.reroll.once === true){
             // Reroll once? No recursion.
             if(options.rerollArray.indexOf(result) != -1){
                 var newResult = Math.ceil(Math.random() * 10);
@@ -156,7 +156,7 @@ $(document).ready(function(){
                 return { result: result, bonus: bonus };
             }        
         }
-        else if(options.reroll.forever == true){
+        else if(options.reroll.forever === true){
             // Reroll forever? Uses recursion.
             if(options.rerollArray.indexOf(result) != -1){
                 return rollDie(options, targetNumber, doublesArray, bonus);
@@ -172,10 +172,10 @@ $(document).ready(function(){
     
     // Returns an array saying which numbers have been checked off.
     function getDiceChecks(type){
-        var result = []
+        var result = [];
         
         for(var i = 1; i <= 10; i++){
-            var thistype = type + i
+            var thistype = type + i;
             if($('input[name="'+thistype+'"]').is(':checked')){
                 result.push(i);
             }
@@ -203,6 +203,6 @@ $(document).ready(function(){
             }
         }
         
-        return {once: once, forever: forever}
+        return {once: once, forever: forever};
     }
 });

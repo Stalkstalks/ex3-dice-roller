@@ -15,56 +15,71 @@
 <p>Adjust your dice pool, set the options, and roll away!<br/>Hit "Info" to see a verification code that other people can paste into the box at the bottom of the page.</p>
 
 <form>
-<table class="hasborder">
-<tr class="hasborder"><td colspan="2">
-    <strong>Dice Pool:</strong> <input type="number" name="dicepool" value="10" >
-    <strong>TN:</strong> <input type="number" name="targetnumber" value="7">
-</td></tr>
-<tr><td class="leftheader">
-    <strong>Doubles:</strong>
-</td>
-<td>
-    10<input type="checkbox" name="double10" checked>
-    9<input type="checkbox" name="double9">
-    8<input type="checkbox" name="double8">
-    7<input type="checkbox" name="double7">
-    6<input type="checkbox" name="double6">
-    5<input type="checkbox" name="double5">
-    4<input type="checkbox" name="double4">
-    3<input type="checkbox" name="double3">
-    2<input type="checkbox" name="double2">
-    1<input type="checkbox" name="double1">
-</td></tr>
-<tr>
-<td></td>
-<td>
-    Ones Subtract <input type="checkbox" name="onessubtract" id="onessubtract"> 
-</td></tr>
-<tr class="topborder"><td class="leftheader">
-    <strong>Rerolls:</strong>
-</td>
-<td>
-    10<input type="checkbox" name="reroll10">
-    9<input type="checkbox" name="reroll9">
-    8<input type="checkbox" name="reroll8">
-    7<input type="checkbox" name="reroll7">
-    6<input type="checkbox" name="reroll6">
-    5<input type="checkbox" name="reroll5">
-    4<input type="checkbox" name="reroll4">
-    3<input type="checkbox" name="reroll3">
-    2<input type="checkbox" name="reroll2">
-    1<input type="checkbox" name="reroll1"><br>
-</td></tr>
-<tr>
-<td></td>
-<td>
-    Reroll once <input type="checkbox" name="rerollonce" id="rerollonce" checked> 
-    Reroll until gone <input type="checkbox" name="rerollforever" id="rerollforever">
-</td></tr>
-<tr class="hasborder"><td colspan="2">
-    <input type="button" name="roll" value="Roll" id="roll">
-</td></tr>
-</table>
+<div style="display:flex;">
+<div class="hasborder optionbox">
+
+    <div class="leftcolumn">
+        <label for="dicepool"><strong>Dice&nbsp;Pool:</strong></label>
+    </div>
+
+    <div>
+        <input type="number" name="dicepool" id="dicepool" value="10" ></label>
+        <label><strong>TN:</strong> <input type="number" name="targetnumber" value="7"></label>
+    </div>
+
+    <div class="leftcolumn topborder">
+        <strong>Doubles:</strong>
+    </div>
+
+    <div class="topborder">
+        <div class="smartwrap">
+            <label>10<input type="checkbox" name="double10" checked></label>
+            <label>9<input type="checkbox" name="double9"></label>
+            <label>8<input type="checkbox" name="double8"></label>
+            <label>7<input type="checkbox" name="double7"></label>
+            <label>6<input type="checkbox" name="double6"></label>
+            <label>5<input type="checkbox" name="double5"></label>
+            <label>4<input type="checkbox" name="double4"></label>
+            <label>3<input type="checkbox" name="double3"></label>
+            <label>2<input type="checkbox" name="double2"></label>
+            <label>1<input type="checkbox" name="double1"></label>
+        </div>
+        <div>
+            <label>Ones Subtract <input type="checkbox" name="onessubtract" id="onessubtract"> </label>
+        </div>
+    </div>
+
+    <div class="leftcolumn topborder">
+        <strong>Rerolls:</strong>
+    </div>
+
+    <div class="topborder">
+        <div class="smartwrap">
+            <label>10<input type="checkbox" name="reroll10"></label>
+            <label>9<input type="checkbox" name="reroll9"></label>
+            <label>8<input type="checkbox" name="reroll8"></label>
+            <label>7<input type="checkbox" name="reroll7"></label>
+            <label>6<input type="checkbox" name="reroll6"></label>
+            <label>5<input type="checkbox" name="reroll5"></label>
+            <label>4<input type="checkbox" name="reroll4"></label>
+            <label>3<input type="checkbox" name="reroll3"></label>
+            <label>2<input type="checkbox" name="reroll2"></label>
+            <label>1<input type="checkbox" name="reroll1"></label>
+        </div>
+        <div>
+            <label>Reroll once <input type="checkbox" name="rerollonce" id="rerollonce" checked></label> 
+            <label>Reroll until gone <input type="checkbox" name="rerollforever" id="rerollforever"></label>
+        </div>
+    </div>
+
+    <div class="leftcolumn topborder">
+        <input type="button" name="roll" value="Roll" id="roll">
+    </div>
+    <div class="topborder">&nbsp;</div>
+
+</div>
+<div></div>
+</div>
 </form>
 
 <p><strong>Result:</strong></p>

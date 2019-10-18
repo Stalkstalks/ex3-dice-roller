@@ -3,8 +3,29 @@
     background-color: #DDD;
 }
 
+.optionbox {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}
+
+.optionbox > div {
+    padding: 3px;
+}
+
+.optionbox > div > div {
+    padding-bottom: 3px;
+}
+
+.leftcolumn {
+    text-align: right;
+}
+
 .topborder {
     border-top: 1px solid black;
+}
+
+.smartwrap > label {
+    white-space:nowrap;
 }
 
 table {

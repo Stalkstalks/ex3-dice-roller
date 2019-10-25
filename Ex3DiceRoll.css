@@ -9,7 +9,7 @@
 }
 
 .optionbox > div {
-    padding: 3px;
+    padding: 4px;
 }
 
 .optionbox > div > div {
@@ -36,6 +36,10 @@ input {
     margin-right: 12px;
 }
 
+input[type=checkbox] {
+    transform: scale(1.2);
+}
+
 input[type="number"] {
     width: 50px;
 }
@@ -54,7 +58,7 @@ input[type="number"] {
 }
 
 body {
-    font-family: Verdana, sans-serif;
+    font-family: sans-serif;
 }
 
 h1 {

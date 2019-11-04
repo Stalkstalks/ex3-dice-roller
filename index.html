@@ -1,114 +1,151 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Ex3 Dice Roller</title>
     <script src="jquery-3.4.1.slim.min.js"></script>
     <script language="javascript" src="lz-string.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="Ex3DiceRoll.css" />
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="Ex3DiceRoll.css" />
+  </head>
+  <body>
+    <p class="titletopper">Exalted 3rd Edition</p>
+    <h1>Dice Pool Roller</h1>
 
-<p class="titletopper">Exalted 3rd Edition</p>
-<h1>Dice Pool Roller</h1>
+    <p>
+      Adjust your dice pool, set the options, and roll away!<br />Hit "Info" to
+      see a verification code that other people can paste into the box at the
+      bottom of the page.
+    </p>
 
-<p>Adjust your dice pool, set the options, and roll away!<br/>Hit "Info" to see a verification code that other people can paste into the box at the bottom of the page.</p>
+    <form>
+      <div style="display:flex;">
+        <div class="hasborder optionbox">
+          <div class="leftcolumn">
+            <label for="dicepool"><strong>Dice&nbsp;Pool:</strong></label>
+          </div>
 
-<form>
-<div style="display:flex;">
-<div class="hasborder optionbox">
+          <div>
+            <input type="number" name="dicepool" id="dicepool" value="10" />
+            <label
+              ><strong>TN:</strong>
+              <input type="number" name="targetnumber" value="7"
+            /></label>
+          </div>
 
-    <div class="leftcolumn">
-        <label for="dicepool"><strong>Dice&nbsp;Pool:</strong></label>
-    </div>
+          <div class="leftcolumn topborder">
+            <strong>Doubles:</strong>
+          </div>
 
-    <div>
-        <input type="number" name="dicepool" id="dicepool" value="10" ></label>
-        <label><strong>TN:</strong> <input type="number" name="targetnumber" value="7"></label>
-    </div>
+          <div class="topborder">
+            <div class="smartwrap">
+              <label>10<input type="checkbox" name="double10" checked/></label>
+              <label>9<input type="checkbox" name="double9"/></label>
+              <label>8<input type="checkbox" name="double8"/></label>
+              <label>7<input type="checkbox" name="double7"/></label>
+              <label>6<input type="checkbox" name="double6"/></label>
+              <label>5<input type="checkbox" name="double5"/></label>
+              <label>4<input type="checkbox" name="double4"/></label>
+              <label>3<input type="checkbox" name="double3"/></label>
+              <label>2<input type="checkbox" name="double2"/></label>
+              <label>1<input type="checkbox" name="double1"/></label>
+            </div>
+            <div>
+              <label
+                >Ones Subtract
+                <input type="checkbox" name="onessubtract" id="onessubtract" />
+              </label>
+            </div>
+          </div>
 
-    <div class="leftcolumn topborder">
-        <strong>Doubles:</strong>
-    </div>
+          <div class="leftcolumn topborder">
+            <strong>Rerolls:</strong>
+          </div>
 
-    <div class="topborder">
-        <div class="smartwrap">
-            <label>10<input type="checkbox" name="double10" checked></label>
-            <label>9<input type="checkbox" name="double9"></label>
-            <label>8<input type="checkbox" name="double8"></label>
-            <label>7<input type="checkbox" name="double7"></label>
-            <label>6<input type="checkbox" name="double6"></label>
-            <label>5<input type="checkbox" name="double5"></label>
-            <label>4<input type="checkbox" name="double4"></label>
-            <label>3<input type="checkbox" name="double3"></label>
-            <label>2<input type="checkbox" name="double2"></label>
-            <label>1<input type="checkbox" name="double1"></label>
+          <div class="topborder">
+            <div class="smartwrap">
+              <label>10<input type="checkbox" name="reroll10"/></label>
+              <label>9<input type="checkbox" name="reroll9"/></label>
+              <label>8<input type="checkbox" name="reroll8"/></label>
+              <label>7<input type="checkbox" name="reroll7"/></label>
+              <label>6<input type="checkbox" name="reroll6"/></label>
+              <label>5<input type="checkbox" name="reroll5"/></label>
+              <label>4<input type="checkbox" name="reroll4"/></label>
+              <label>3<input type="checkbox" name="reroll3"/></label>
+              <label>2<input type="checkbox" name="reroll2"/></label>
+              <label>1<input type="checkbox" name="reroll1"/></label>
+            </div>
+            <div>
+              <label
+                >Reroll once
+                <input type="checkbox" name="rerollonce" id="rerollonce" checked
+              /></label>
+              <label
+                >Reroll until gone
+                <input type="checkbox" name="rerollforever" id="rerollforever"
+              /></label>
+            </div>
+          </div>
+
+          <div class="leftcolumn topborder">
+            <input type="button" name="roll" value="Roll" id="roll" />
+          </div>
+          <div class="topborder">&nbsp;</div>
         </div>
-        <div>
-            <label>Ones Subtract <input type="checkbox" name="onessubtract" id="onessubtract"> </label>
-        </div>
-    </div>
+        <div></div>
+      </div>
+    </form>
 
-    <div class="leftcolumn topborder">
-        <strong>Rerolls:</strong>
-    </div>
+    <p><strong>Result:</strong></p>
+    <div class="clearable" id="result" role="status" aria-live="polite"></div>
+    <div class="clearable" id="oldresults"></div>
+    <button id="clear">Clear results</button>
 
-    <div class="topborder">
-        <div class="smartwrap">
-            <label>10<input type="checkbox" name="reroll10"></label>
-            <label>9<input type="checkbox" name="reroll9"></label>
-            <label>8<input type="checkbox" name="reroll8"></label>
-            <label>7<input type="checkbox" name="reroll7"></label>
-            <label>6<input type="checkbox" name="reroll6"></label>
-            <label>5<input type="checkbox" name="reroll5"></label>
-            <label>4<input type="checkbox" name="reroll4"></label>
-            <label>3<input type="checkbox" name="reroll3"></label>
-            <label>2<input type="checkbox" name="reroll2"></label>
-            <label>1<input type="checkbox" name="reroll1"></label>
-        </div>
-        <div>
-            <label>Reroll once <input type="checkbox" name="rerollonce" id="rerollonce" checked></label> 
-            <label>Reroll until gone <input type="checkbox" name="rerollforever" id="rerollforever"></label>
-        </div>
-    </div>
+    <hr />
 
-    <div class="leftcolumn topborder">
-        <input type="button" name="roll" value="Roll" id="roll">
-    </div>
-    <div class="topborder">&nbsp;</div>
+    <h2>Verify rolled result</h2>
+    <form>
+      <input
+        type="text"
+        value="paste gibberish here"
+        name="gibberish"
+        id="gibberish"
+      />
+      <input type="button" name="decode" value="Decode" id="decode" />
+    </form>
 
-</div>
-<div></div>
-</div>
-</form>
+    <p><strong>Result:</strong></p>
+    <div id="decoded"></div>
 
-<p><strong>Result:</strong></p>
-<div class="clearable" id="result" role="status" aria-live="polite"></div>
-<div class="clearable" id="oldresults"></div>
-<button id="clear">Clear results</button>
+    <hr />
 
-<hr/>
-
-<h2>Verify rolled result</h2>
-<form>
-    <input type="text" value="paste gibberish here" name="gibberish" id="gibberish">
-    <input type="button" name="decode" value="Decode" id="decode">
-</form>
-
-<p><strong>Result:</strong></p>
-<div id="decoded"></div>
-
-<hr />
-
-<div id="colinlinks">
-<p class="titletopper">Colin's Ex3 Interactives:</p>
-<p><a href="https://colin-fredericks.github.io/ex3-dice-roller/">Dice Roller</a></p>
-<p><a href="https://colin-fredericks.github.io/ex3-battle-groups/">Battle Group Generator</a></p>
-<p><a href="https://colin-fredericks.github.io/ex3-dice-tricks/">Dice Trick Comparison</a></p>
-<p><a href="https://colin-fredericks.github.io/ex3-400-lunars/">400 Lunars</a></p>
-<p><a href="https://strangercreations.wordpress.com">Stranger Creations - NPCs and settings</a></p>
-</div>
-
-</body>
-<script src="Ex3DiceRoll.js"></script>
+    <footer id="colinlinks">
+      <p class="titletopper">Colin's Ex3 Interactives:</p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-dice-roller/"
+          >Dice Roller</a
+        >
+      </p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-battle-groups/"
+          >Battle Group Generator</a
+        >
+      </p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-dice-tricks/"
+          >Dice Trick Comparison</a
+        >
+      </p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-400-lunars/"
+          >400 Lunars</a
+        >
+      </p>
+      <p>
+        <a href="https://strangercreations.wordpress.com"
+          >Stranger Creations - NPCs and settings</a
+        >
+      </p>
+    </footer>
+  </body>
+  <script src="Ex3DiceRoll.js"></script>
 </html>

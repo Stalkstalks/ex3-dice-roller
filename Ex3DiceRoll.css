@@ -3,21 +3,18 @@
     background-color: #DDD;
 }
 
-.optionbox {
-    display: grid;
-    grid-template-columns: 1fr 6fr;
+.optionbox{
+  width: auto !important;
 }
 
-.optionbox > div {
-    padding: 4px;
-}
-
-.optionbox > div > div {
-    padding-bottom: 3px;
-}
-
-.leftcolumn {
+.optionbox > .ui-block-a {
     text-align: right;
+    width: 8em !important;
+    padding: 15px 4px 4px 4px;
+}
+
+.optionbox > .ui-block-b {
+  width: calc(100% - 8em) !important;
 }
 
 .topborder {
@@ -40,12 +37,7 @@ input[type=checkbox] {
     transform: scale(1.2);
 }
 
-input[type="number"] {
-    width: 50px;
-}
-
 .leftheader {
-    width: 75px;
 }
 
 .dim {
@@ -71,7 +63,7 @@ h1 {
     margin: 0px;
     padding: 0px;
     color: #b80;
-    font-variant: small-caps;    
+    font-variant: small-caps;
     font-weight: bold;
 }
 
@@ -81,5 +73,4 @@ h1 {
 
 #colinlinks p {
     margin: 0px;
-    font-size: small;
 }

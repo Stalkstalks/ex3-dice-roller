@@ -10,7 +10,7 @@ $(document).ready(function(){
     var options = {};
 
     // Clear old results off the screen.
-    $('#clear').on('click tap', function(){
+    $('#clear').on('click', function(){
         $(".clearable").empty();
     });
 
@@ -31,7 +31,7 @@ $(document).ready(function(){
     oncebutton.on('change', function(){ options.reroll = checkBoxChecker('once'); });
     foreverbutton.on('change', function(){ options.reroll = checkBoxChecker('forever'); });
 
-    $('#roll').on('click tap', function(){
+    $('#roll').on('click', function(){
 
         var dicePool = $('input[name="dicepool"]').val();
         var targetNumber = $('input[name="targetnumber"]').val();
@@ -113,7 +113,7 @@ $(document).ready(function(){
         $('#result' + (vcounter-1) ).detach().prependTo(oldResultsArea);
 
         // Don't need to have the gibberish code there all the time.
-        $('.showvcode'+vcounter).on('click tap', function() {
+        $('.showvcode'+vcounter).on('click', function() {
             var myClass = this.className;
             var codeNumber = myClass.split(/\s+/)[1].replace('showvcode', '');
             $('.vcode'+codeNumber).slideToggle('fast');
@@ -126,7 +126,7 @@ $(document).ready(function(){
     });
 
     // Undo the gibberish code to show the original roll.
-    $('#decode').on('click tap', function(){
+    $('#decode').on('click', function(){
 
         var encodedString = $('#gibberish').val();
         var decodedString = LZString.decompressFromUTF16(encodedString);

@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <title>Ex3 Dice Roller</title>
-    <script src="jquery-3.4.1.slim.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script language="javascript" src="lz-string.min.js"></script>
     <link rel="stylesheet" type="text/css" href="Ex3DiceRoll.css" />
   </head>
@@ -37,7 +39,7 @@
           </div>
 
           <div class="topborder">
-            <div class="smartwrap">
+            <fieldset class="smartwrap" data-role="controlgroup" data-type="horizontal">
               <label>10<input type="checkbox" name="double10" checked/></label>
               <label>9<input type="checkbox" name="double9"/></label>
               <label>8<input type="checkbox" name="double8"/></label>
@@ -48,13 +50,13 @@
               <label>3<input type="checkbox" name="double3"/></label>
               <label>2<input type="checkbox" name="double2"/></label>
               <label>1<input type="checkbox" name="double1"/></label>
-            </div>
-            <div>
+            </fieldset>
+            <fieldset>
               <label
                 >Ones Subtract
                 <input type="checkbox" name="onessubtract" id="onessubtract" />
               </label>
-            </div>
+            </fieldset>
           </div>
 
           <div class="leftcolumn topborder">
@@ -62,7 +64,7 @@
           </div>
 
           <div class="topborder">
-            <div class="smartwrap">
+            <fieldset class="smartwrap" data-role="controlgroup" data-type="horizontal">
               <label>10<input type="checkbox" name="reroll10"/></label>
               <label>9<input type="checkbox" name="reroll9"/></label>
               <label>8<input type="checkbox" name="reroll8"/></label>
@@ -73,8 +75,8 @@
               <label>3<input type="checkbox" name="reroll3"/></label>
               <label>2<input type="checkbox" name="reroll2"/></label>
               <label>1<input type="checkbox" name="reroll1"/></label>
-            </div>
-            <div>
+            </fieldset>
+            <fieldset data-role="controlgroup" data-type="horizontal">
               <label
                 >Reroll once
                 <input type="checkbox" name="rerollonce" id="rerollonce" checked
@@ -83,7 +85,7 @@
                 >Reroll until gone
                 <input type="checkbox" name="rerollforever" id="rerollforever"
               /></label>
-            </div>
+            </fieldset>
           </div>
 
           <div class="leftcolumn topborder">

@@ -1,22 +1,22 @@
 $(document).ready(function() {
   console.log('ready');
 
-  var resultsArea = $('#result');
-  var oldResultsArea = $('#oldresults');
-  var decodeArea = $('#decoded');
-  var vcounter = 0;
-  var lastDateStamp = 'Never';
-  var lastSuccesses = 'n/a';
-  var options = {};
+  let resultsArea = $('#result');
+  let oldResultsArea = $('#oldresults');
+  let decodeArea = $('#decoded');
+  let vcounter = 0;
+  let lastDateStamp = 'Never';
+  let lastSuccesses = 'n/a';
+  let options = {};
 
   // Clear old results off the screen.
   $('#clear').on('click', function() {
     $('.clearable').empty();
   });
 
-  var onessubtract = $('#onessubtract');
-  var oncebutton = $('#rerollonce');
-  var foreverbutton = $('#rerollforever');
+  let onessubtract = $('#onessubtract');
+  let oncebutton = $('#rerollonce');
+  let foreverbutton = $('#rerollforever');
 
   // Rerolling a number "forever" means until no dice show that number.
   // Need to check as soon as we get to the page, and then set based on user selections.
@@ -36,14 +36,14 @@ $(document).ready(function() {
   });
 
   $('#roll').on('click', function() {
-    var dicePool = $('input[name="dicepool"]').val();
-    var targetNumber = $('input[name="targetnumber"]').val();
-    var resultsArray = [];
-    var resultsString = '';
-    var successes = 0;
-    var botched = false;
-    var onesSubtract = false;
-    var datestamp = new Date();
+    let dicePool = $('input[name="dicepool"]').val();
+    let targetNumber = $('input[name="targetnumber"]').val();
+    let resultsArray = [];
+    let resultsString = '';
+    let successes = 0;
+    let botched = false;
+    let onesSubtract = false;
+    let datestamp = new Date();
 
     // Do 1's reduce the number of successes you rolled?
     if (onessubtract.is(':checked')) {
@@ -53,16 +53,16 @@ $(document).ready(function() {
     }
 
     // Doubles count as 2 successes.
-    var doublesArray = getDiceChecks('double');
+    let doublesArray = getDiceChecks('double');
     options.doublesArray = doublesArray;
 
-    var rerollArray = getDiceChecks('reroll');
+    let rerollArray = getDiceChecks('reroll');
     options.rerollArray = rerollArray;
 
     console.log('rolling dice');
     // Make the array that has all our raw dice roll results.
-    for (var i = 0; i < dicePool; i++) {
-      var thisDie = rollDie(options, targetNumber, doublesArray, 0);
+    for (let i = 0; i < dicePool; i++) {
+      let thisDie = rollDie(options, targetNumber, doublesArray, 0);
       console.log(thisDie);
       resultsArray.push(thisDie.result);
       if (thisDie.result == 1 && onesSubtract) {
@@ -100,21 +100,21 @@ $(document).ready(function() {
       }
     }
 
-    var buttonCode =
+    let buttonCode =
       '<button class="showbutton showvcode' + vcounter + '">Info</button>';
 
-    var infoString =
+    let infoString =
       'Timestamp: ' +
       datestamp.toUTCString() +
       '<br/>Last roll: ' +
       lastSuccesses;
 
     // Some of the results are encoded in the "secret code" gibberish.
-    var encodedstring = LZString.compressToUTF16(
+    let encodedstring = LZString.compressToUTF16(
       resultsString + '<br/>' + infoString
     );
 
-    var verificationCode = 'Verification Code:<br/>' + encodedstring;
+    let verificationCode = 'Verification Code:<br/>' + encodedstring;
 
     resultsArea.prepend(
       '<p id=result' +
@@ -141,8 +141,8 @@ $(document).ready(function() {
 
     // Don't need to have the gibberish code there all the time.
     $('.showvcode' + vcounter).on('click', function() {
-      var myClass = this.className;
-      var codeNumber = myClass.split(/\s+/)[1].replace('showvcode', '');
+      let myClass = this.className;
+      let codeNumber = myClass.split(/\s+/)[1].replace('showvcode', '');
       $('.vcode' + codeNumber).slideToggle('fast');
     });
 
@@ -153,15 +153,15 @@ $(document).ready(function() {
 
   // Undo the gibberish code to show the original roll.
   $('#decode').on('click', function() {
-    var encodedString = $('#gibberish').val();
-    var decodedString = LZString.decompressFromUTF16(encodedString);
+    let encodedString = $('#gibberish').val();
+    let decodedString = LZString.decompressFromUTF16(encodedString);
     decodeArea.prepend('<p>' + decodedString + '</p>');
   });
 
   // Returns a single die result.
   function rollDie(options, targetNumber, doublesArray, bonus) {
     console.log(options);
-    var result = Math.ceil(Math.random() * 10);
+    let result = Math.ceil(Math.random() * 10);
 
     // Need to keep successes on rerolls!
     if (result >= targetNumber) {
@@ -175,7 +175,7 @@ $(document).ready(function() {
     if (options.reroll.once === true) {
       // Reroll once? No recursion.
       if (options.rerollArray.indexOf(result) != -1) {
-        var newResult = Math.ceil(Math.random() * 10);
+        let newResult = Math.ceil(Math.random() * 10);
         if (newResult >= targetNumber) {
           bonus += 1;
         }
@@ -201,10 +201,10 @@ $(document).ready(function() {
 
   // Returns an array saying which numbers have been checked off.
   function getDiceChecks(type) {
-    var result = [];
+    let result = [];
 
-    for (var i = 1; i <= 10; i++) {
-      var thistype = type + i;
+    for (let i = 1; i <= 10; i++) {
+      let thistype = type + i;
       if ($('input[name="' + thistype + '"]').is(':checked')) {
         result.push(i);
       }
@@ -214,8 +214,8 @@ $(document).ready(function() {
   }
 
   function checkBoxChecker(box) {
-    var once = false;
-    var forever = false;
+    let once = false;
+    let forever = false;
 
     if (box == 'once') {
       if (oncebutton.is(':checked')) {

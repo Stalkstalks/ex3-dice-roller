@@ -23,118 +23,220 @@
     </p>
 
     <form class="hasborder optionbox ui-grid-a">
-        <div class="ui-block-a">
-          <label for="dicepool">
-            <strong>Dice&nbsp;Pool:</strong>
-          </label>
-        </div>
-
-        <div class="ui-block-b">
-          <fieldset class="ui-grid-d">
-            <div class="ui-block-a">
-              <input type="number" name="dicepool" id="dicepool" value="10" />
-            </div>
-            <div class="ui-block-b" style="text-align:right; padding-top: 15px; width: 3em;">
-              <label for="targetnumber">
-                <strong style="align-self: center;">TN:</strong>
-              </label>
-            </div>
-            <div class="ui-block-c" >
-              <input type="number" name="targetnumber" value="7" />
-            </div>
-          </fieldset>
-        </div>
-
-        <div class="topborder ui-block-a">
-          <strong>Doubles:</strong>
-        </div>
-
-        <div class="topborder ui-block-b">
-          <fieldset data-role="controlgroup" data-type="horizontal">
-            <input type="checkbox" name="double10" id="double10"/>
-            <label for="double10">10</label>
-            <input type="checkbox" name="double9" id="double9"/>
-            <label for="double9">9</label>
-            <input type="checkbox" name="double8" id="double8"/>
-            <label for="double8">8</label>
-            <input type="checkbox" name="double7" id="double7"/>
-            <label for="double7">7</label>
-            <input type="checkbox" name="double6" id="double6"/>
-            <label for="double6">6</label>
-            <input type="checkbox" name="double5" id="double5"/>
-            <label for="double5">5</label>
-            <input type="checkbox" name="double4" id="double4"/>
-            <label for="double4">4</label>
-            <input type="checkbox" name="double3" id="double3"/>
-            <label for="double3">3</label>
-            <input type="checkbox" name="double2" id="double2"/>
-            <label for="double2">2</label>
-            <input type="checkbox" name="double1" id="double1"/>
-            <label for="double1">1</label>
-          </fieldset>
-          <fieldset data-role="controlgroup" data-type="horizontal">
-            <label
-              >Ones Subtract
-              <input type="checkbox" name="onessubtract" id="onessubtract" />
-            </label>
-          </fieldset>
-        </div>
-
-        <div class="topborder ui-block-a">
-          <strong>Rerolls:</strong>
-        </div>
-
-        <div class="topborder ui-block-b">
-          <fieldset data-role="controlgroup" data-type="horizontal">
-            <input type="checkbox" name="reroll10" id="reroll10"/>
-            <label for="reroll10">10</label>
-            <input type="checkbox" name="reroll9" id="reroll9"/>
-            <label for="reroll9">9</label>
-            <input type="checkbox" name="reroll8" id="reroll8"/>
-            <label for="reroll8">8</label>
-            <input type="checkbox" name="reroll7" id="reroll7"/>
-            <label for="reroll7">7</label>
-            <input type="checkbox" name="reroll6" id="reroll6"/>
-            <label for="reroll6">6</label>
-            <input type="checkbox" name="reroll5" id="reroll5"/>
-            <label for="reroll5">5</label>
-            <input type="checkbox" name="reroll4" id="reroll4"/>
-            <label for="reroll4">4</label>
-            <input type="checkbox" name="reroll3" id="reroll3"/>
-            <label for="reroll3">3</label>
-            <input type="checkbox" name="reroll2" id="reroll2"/>
-            <label for="reroll2">2</label>
-            <input type="checkbox" name="reroll1" id="reroll1"/>
-            <label for="reroll1">1</label>
-          </fieldset>
-          <fieldset data-role="controlgroup" data-type="horizontal">
-            <label>
-              Reroll once
-              <input
-                type="radio"
-                name="rerolls"
-                value="once"
-                id="rerollonce"
-                checked
-              />
-            </label>
-            <label>
-              Reroll until gone
-              <input
-                type="radio"
-                name="rerolls"
-                value="forever"
-                id="rerollforever"
-              />
-            </label>
-          </fieldset>
-        </div>
-
-        <div class="topborder ui-block-a">
-          <input type="button" name="roll" value="Roll" id="roll" />
-        </div>
-        <div class="topborder ui-block-b">&nbsp;</div>
+      <div class="ui-block-a">
+        <label for="dicepool">
+          <strong>Dice&nbsp;Pool:</strong>
+        </label>
       </div>
+
+      <div class="ui-block-b">
+        <fieldset class="ui-grid-d">
+          <div class="ui-block-a">
+            <input type="number" name="dicepool" id="dicepool" value="10" />
+          </div>
+          <div
+            class="ui-block-b"
+            style="text-align:right; padding-top: 15px; width: 3em;"
+          >
+            <label for="targetnumber">
+              <strong style="align-self: center;">TN:</strong>
+            </label>
+          </div>
+          <div class="ui-block-c">
+            <input type="number" name="targetnumber" value="7" />
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="topborder ui-block-a">
+        <strong>Doubles:</strong>
+      </div>
+
+      <div class="topborder ui-block-b">
+        <fieldset data-role="controlgroup" data-type="horizontal">
+          <input
+            type="checkbox"
+            name="double10"
+            id="double10"
+            aria-labelledby="double10_label"
+          />
+          <label for="double10" id="double10_label">10</label>
+          <input
+            type="checkbox"
+            name="double9"
+            id="double9"
+            aria-labelledby="double9_label"
+          />
+          <label for="double9" id="double9_label">9</label>
+          <input
+            type="checkbox"
+            name="double8"
+            id="double8"
+            aria-labelledby="double8_label"
+          />
+          <label for="double8" id="double8_label">8</label>
+          <input
+            type="checkbox"
+            name="double7"
+            id="double7"
+            aria-labelledby="double7_label"
+          />
+          <label for="double7" id="double7_label">7</label>
+          <input
+            type="checkbox"
+            name="double6"
+            id="double6"
+            aria-labelledby="double6_label"
+          />
+          <label for="double6" id="double6_label">6</label>
+          <input
+            type="checkbox"
+            name="double5"
+            id="double5"
+            aria-labelledby="double5_label"
+          />
+          <label for="double5" id="double5_label">5</label>
+          <input
+            type="checkbox"
+            name="double4"
+            id="double4"
+            aria-labelledby="double4_label"
+          />
+          <label for="double4" id="double4_label">4</label>
+          <input
+            type="checkbox"
+            name="double3"
+            id="double3"
+            aria-labelledby="double3_label"
+          />
+          <label for="double3" id="double3_label">3</label>
+          <input
+            type="checkbox"
+            name="double2"
+            id="double2"
+            aria-labelledby="double2_label"
+          />
+          <label for="double2" id="double2_label">2</label>
+          <input
+            type="checkbox"
+            name="double1"
+            id="double1"
+            aria-labelledby="double1_label"
+          />
+          <label for="double1" id="double1_label">1</label>
+        </fieldset>
+        <fieldset data-role="controlgroup" data-type="horizontal">
+          <label>
+            Ones Subtract
+            <input type="checkbox" name="onessubtract" id="onessubtract" />
+          </label>
+        </fieldset>
+      </div>
+
+      <div class="topborder ui-block-a">
+        <strong>Rerolls:</strong>
+      </div>
+
+      <div class="topborder ui-block-b">
+        <fieldset data-role="controlgroup" data-type="horizontal">
+          <input
+            type="checkbox"
+            name="reroll10"
+            id="reroll10"
+            aria-labelledby="reroll10_label"
+          />
+          <label for="reroll10" id="reroll10_label">10</label>
+          <input
+            type="checkbox"
+            name="reroll9"
+            id="reroll9"
+            aria-labelledby="reroll9_label"
+          />
+          <label for="reroll9" id="reroll9_label">9</label>
+          <input
+            type="checkbox"
+            name="reroll8"
+            id="reroll8"
+            aria-labelledby="reroll8_label"
+          />
+          <label for="reroll8" id="reroll8_label">8</label>
+          <input
+            type="checkbox"
+            name="reroll7"
+            id="reroll7"
+            aria-labelledby="reroll7_label"
+          />
+          <label for="reroll7" id="reroll7_label">7</label>
+          <input
+            type="checkbox"
+            name="reroll6"
+            id="reroll6"
+            aria-labelledby="reroll6_label"
+          />
+          <label for="reroll6" id="reroll6_label">6</label>
+          <input
+            type="checkbox"
+            name="reroll5"
+            id="reroll5"
+            aria-labelledby="reroll5_label"
+          />
+          <label for="reroll5" id="reroll5_label">5</label>
+          <input
+            type="checkbox"
+            name="reroll4"
+            id="reroll4"
+            aria-labelledby="reroll4_label"
+          />
+          <label for="reroll4" id="reroll4_label">4</label>
+          <input
+            type="checkbox"
+            name="reroll3"
+            id="reroll3"
+            aria-labelledby="reroll3_label"
+          />
+          <label for="reroll3" id="reroll3_label">3</label>
+          <input
+            type="checkbox"
+            name="reroll2"
+            id="reroll2"
+            aria-labelledby="reroll2_label"
+          />
+          <label for="reroll2" id="reroll2_label">2</label>
+          <input
+            type="checkbox"
+            name="reroll1"
+            id="reroll1"
+            aria-labelledby="reroll1_label"
+          />
+          <label for="reroll1" id="reroll1_label">1</label>
+        </fieldset>
+        <fieldset data-role="controlgroup" data-type="horizontal">
+          <label>
+            Reroll once
+            <input
+              type="radio"
+              name="rerolls"
+              value="once"
+              id="rerollonce"
+              checked
+            />
+          </label>
+          <label>
+            Reroll until gone
+            <input
+              type="radio"
+              name="rerolls"
+              value="forever"
+              id="rerollforever"
+            />
+          </label>
+        </fieldset>
+      </div>
+
+      <div class="topborder ui-block-a">
+        <input type="button" name="roll" value="Roll" id="roll" />
+      </div>
+      <div class="topborder ui-block-b">&nbsp;</div>
     </form>
 
     <p><strong>Result:</strong></p>
@@ -163,29 +265,29 @@
     <footer id="colinlinks">
       <p class="titletopper">Colin's Ex3 Interactives:</p>
       <p>
-        <a href="https://colin-fredericks.github.io/ex3-dice-roller/"
-          >Dice Roller</a
-        >
+        <a href="https://colin-fredericks.github.io/ex3-dice-roller/">
+          Dice Roller
+        </a>
       </p>
       <p>
-        <a href="https://colin-fredericks.github.io/ex3-battle-groups/"
-          >Battle Group Generator</a
-        >
+        <a href="https://colin-fredericks.github.io/ex3-battle-groups/">
+          Battle Group Generator
+        </a>
       </p>
       <p>
-        <a href="https://colin-fredericks.github.io/ex3-dice-tricks/"
-          >Dice Trick Comparison</a
-        >
+        <a href="https://colin-fredericks.github.io/ex3-dice-tricks/">
+          Dice Trick Comparison
+        </a>
       </p>
       <p>
-        <a href="https://colin-fredericks.github.io/ex3-400-lunars/"
-          >400 Lunars</a
-        >
+        <a href="https://colin-fredericks.github.io/ex3-400-lunars/">
+          400 Lunars
+        </a>
       </p>
       <p>
-        <a href="https://strangercreations.wordpress.com"
-          >Stranger Creations - NPCs and settings</a
-        >
+        <a href="https://strangercreations.wordpress.com">
+          Stranger Creations - NPCs and settings
+        </a>
       </p>
     </footer>
   </body>

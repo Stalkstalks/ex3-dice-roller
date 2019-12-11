@@ -26,7 +26,7 @@ $(document).ready(function(){
     }
     if(foreverbutton.is(':checked')){
         options.reroll.forever = true;
-    }        
+    }
 
     oncebutton.on('change', function(){ options.reroll = checkBoxChecker('once'); });
     foreverbutton.on('change', function(){ options.reroll = checkBoxChecker('forever'); });
@@ -42,7 +42,7 @@ $(document).ready(function(){
         var onesSubtract = false;
         var encodedstring = '';
         var datestamp = new Date();
-                
+
         // Do 1's reduce the number of successes you rolled?
         if(onessubtract.is(':checked')){
             onesSubtract = true;
@@ -66,7 +66,7 @@ $(document).ready(function(){
             if(thisDie.result == 1 && onesSubtract) {successes -= 1;}
             successes += thisDie.bonus;
         }
-        
+
         // Botching: No successes and at least one 1 showing.
         if(successes <= 0){
             if(resultsArray.indexOf(1) != -1){
@@ -85,7 +85,7 @@ $(document).ready(function(){
                 resultsString = '<strong>' + successes + ' successes.</strong> Roll = ' + resultsString + '. ';
             }
         }
-        
+
         var buttonCode = '<button class="showbutton showvcode' + vcounter + '">Info</button>';
 
         var infoString = 'Timestamp: '
@@ -101,7 +101,7 @@ $(document).ready(function(){
         resultsArea.prepend('<p id=result' + vcounter + '>'
             + resultsString
             + buttonCode
-            + '<br/><span class="hiddencode vcode' + vcounter + '">' 
+            + '<br/><span class="hiddencode vcode' + vcounter + '">'
             + infoString + '<br/>'
             + verificationCode + '<br/>'
             + '</span></p>'
@@ -127,7 +127,7 @@ $(document).ready(function(){
 
     // Undo the gibberish code to show the original roll.
     $('#decode').on('click tap', function(){
-        
+
         var encodedString = $('#gibberish').val();
         var decodedString = LZString.decompressFromUTF16(encodedString);
         decodeArea.prepend('<p>' + decodedString + '</p>');
@@ -138,12 +138,12 @@ $(document).ready(function(){
     function rollDie(options, targetNumber, doublesArray, bonus){
         console.log(options);
         var result = Math.ceil(Math.random() * 10);
-        
+
         // Need to keep successes on rerolls!
         if(result >= targetNumber){bonus += 1;}
         if(doublesArray.indexOf(result) != -1){bonus += 1;}
 
-        
+
         // Check for rerolls. Two different types.
         if(options.reroll.once === true){
             // Reroll once? No recursion.
@@ -154,7 +154,7 @@ $(document).ready(function(){
                 return { result: newResult, bonus: bonus };
             }else{
                 return { result: result, bonus: bonus };
-            }        
+            }
         }
         else if(options.reroll.forever === true){
             // Reroll forever? Uses recursion.
@@ -169,11 +169,11 @@ $(document).ready(function(){
             return { result: result, bonus: bonus };
         }
     }
-    
+
     // Returns an array saying which numbers have been checked off.
     function getDiceChecks(type){
         var result = [];
-        
+
         for(var i = 1; i <= 10; i++){
             var thistype = type + i;
             if($('input[name="'+thistype+'"]').is(':checked')){
@@ -183,11 +183,11 @@ $(document).ready(function(){
 
         return result;
     }
-    
+
     function checkBoxChecker(box){
         var once = false;
         var forever = false;
-        
+
         if(box == 'once'){
             if(oncebutton.is(':checked')){
                 foreverbutton.prop("checked", false);
@@ -202,7 +202,7 @@ $(document).ready(function(){
                 console.log('reroll forever');
             }
         }
-        
+
         return {once: once, forever: forever};
     }
 });

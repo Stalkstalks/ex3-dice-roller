@@ -100,37 +100,47 @@ $(document).ready(function() {
       }
     }
 
-    let buttonCode =
-      '<button class="showbutton showvcode' + vcounter + '">Info</button>';
+    let buttonCode = $('<button>');
+    buttonCode.addClass('showbutton');
+    buttonCode.addClass('showvcode' + vcounter);
+    buttonCode.html('Info');
+
+    let hiddenCode = $('<span>');
+    hiddenCode.addClass('hiddencode');
+    hiddenCode.addClass('vcode' + vcounter);
 
     let infoString =
       'Timestamp: ' +
       datestamp.toUTCString() +
       '<br/>Last roll: ' +
-      lastSuccesses;
+      lastSuccesses +
+      '<br/>Verification Code:';
 
     // Some of the results are encoded in the "secret code" gibberish.
     let encodedstring = LZString.compressToUTF16(
       resultsString + '<br/>' + infoString
     );
 
-    let verificationCode = 'Verification Code:<br/>' + encodedstring;
+    let encodedResult = $('<input>');
+    encodedResult.attr('type', 'text');
+    encodedResult.prop('readonly', true);
+    encodedResult.css('display', 'inline');
+    encodedResult.val(encodedstring);
+    encodedResult.on('focus', function() {
+      $(this).select();
+    });
 
-    resultsArea.prepend(
-      '<p id=result' +
-        vcounter +
-        '>' +
-        resultsString +
-        buttonCode +
-        '<br/><span class="hiddencode vcode' +
-        vcounter +
-        '">' +
-        infoString +
-        '<br/>' +
-        verificationCode +
-        '<br/>' +
-        '</span></p>'
-    );
+    hiddenCode.append(infoString);
+    hiddenCode.append(encodedResult);
+
+    let theseResults = $('<p>');
+    theseResults.attr('id', 'result' + vcounter);
+    theseResults.append(resultsString);
+    theseResults.append(buttonCode);
+    theseResults.append('<br/>');
+    theseResults.append(hiddenCode);
+
+    resultsArea.prepend(theseResults);
 
     // We intentionally only let people get the share code for their most recent roll.
     $('.showvcode' + (vcounter - 1)).remove();

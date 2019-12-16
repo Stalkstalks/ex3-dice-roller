@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>Ex3 Dice Roller</title>
-    <link rel="stylesheet" href="jqm/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="jquery-ui.min.css" />
     <script src="jquery-3.4.1.min.js"></script>
-    <script src="jquery-migrate-3.1.0.min.js"></script>
-    <script src="jqm/jquery.mobile-1.4.5.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
     <script language="javascript" src="lz-string.min.js"></script>
     <link rel="stylesheet" type="text/css" href="Ex3DiceRoll.css" />
   </head>
-  <body data-role="page">
+  <body>
     <div class="ui-content">
       <p class="titletopper">Exalted 3rd Edition</p>
       <h1>Dice Pool Roller</h1>
@@ -30,18 +29,30 @@
         <div class="ui-block-b">
           <fieldset class="ui-grid-d">
             <div class="ui-block-a">
-              <input type="number" name="dicepool" id="dicepool" value="10" />
+              <input
+                class="ui-corner-all"
+                type="number"
+                name="dicepool"
+                id="dicepool"
+                value="10"
+                size="3"
+              />
             </div>
-            <div
-              class="ui-block-b"
-              style="text-align:right; padding-top: 15px; width: 3em;"
-            >
-              <label for="targetnumber">
-                <strong style="align-self: center;">TN:</strong>
-              </label>
-            </div>
-            <div class="ui-block-c">
-              <input type="number" name="targetnumber" value="7" />
+            <div class="ui-block-b targetnum">
+              <span class="ui-block-a">
+                <label for="targetnumber">
+                  <strong style="align-self: center;">TN:</strong>
+                </label>
+              </span>
+              <span class="ui-block-b">
+                <input
+                  class="ui-corner-all"
+                  type="number"
+                  name="targetnumber"
+                  value="7"
+                  size="3"
+                />
+              </span>
             </div>
           </fieldset>
         </div>
@@ -51,7 +62,7 @@
         </div>
 
         <div class="topborder ui-block-b">
-          <fieldset data-role="controlgroup" data-type="horizontal">
+          <fieldset class="controlgroup" aria-label="Dice to double">
             <input
               type="checkbox"
               name="double10"
@@ -124,7 +135,7 @@
             />
             <label for="double1" id="double1_label">1</label>
           </fieldset>
-          <fieldset data-role="controlgroup" data-type="horizontal">
+          <fieldset class="controlgroup" aria-label="Ones Subtract?">
             <label>
               Ones Subtract
               <input type="checkbox" name="onessubtract" id="onessubtract" />
@@ -137,7 +148,7 @@
         </div>
 
         <div class="topborder ui-block-b">
-          <fieldset data-role="controlgroup" data-type="horizontal">
+          <fieldset class="controlgroup" aria-label="Dice to reroll">
             <input
               type="checkbox"
               name="reroll10"
@@ -209,7 +220,7 @@
             />
             <label for="reroll1" id="reroll1_label">1</label>
           </fieldset>
-          <fieldset data-role="controlgroup" data-type="horizontal">
+          <fieldset class="controlgroup" aria-label="Reroll once or forever?">
             <label>
               Reroll once
               <input
@@ -263,7 +274,7 @@
 
     <hr />
 
-    <footer id="colinlinks" data-role="footer">
+    <footer id="colinlinks">
       <p class="titletopper">Colin's Ex3 Interactives:</p>
       <p>
         <a href="https://colin-fredericks.github.io/ex3-dice-roller/">

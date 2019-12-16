@@ -14,6 +14,11 @@ $(document).ready(function() {
     $('.clearable').empty();
   });
 
+  // Set up for UI elements
+  $('.controlgroup').controlgroup();
+  $('button').button();
+  $('input[type="button"]').button();
+
   let onessubtract = $('#onessubtract');
   let oncebutton = $('#rerollonce');
   let foreverbutton = $('#rerollforever');

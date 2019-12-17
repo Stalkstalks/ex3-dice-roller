@@ -1,87 +1,355 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Ex3 Dice Roller</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.custom.css" />
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="bootstrap.min.js"></script>
     <script language="javascript" src="lz-string.min.js"></script>
-    <script src="Ex3DiceRoll.js"></script>
-	<link rel="stylesheet" type="text/css" href="Ex3DiceRoll.css" />
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="Ex3DiceRoll.css" />
+  </head>
+  <body>
+    <div class="ui-content">
+      <p class="titletopper">Exalted 3rd Edition</p>
+      <h1>Dice Pool Roller</h1>
 
-<h2>Dice Pool Roller</h2>
+      <p>
+        Adjust your dice pool, set the options, and roll away!<br />Hit "Info"
+        to see a verification code that other people can paste into the box at
+        the bottom of the page.
+      </p>
+      <form class="hasborder optionbox container">
+        <fieldset class="row">
+          <div class="col-sm-2 leftheader">
+            <label for="dicepool">
+              <strong>Dice&nbsp;Pool:</strong>
+            </label>
+          </div>
 
-<p>Adjust your dice pool, set the options, and roll away!<br/>Hit "Info" to see a verification code that other people can paste into the box at the bottom of the page.</p>
+          <div class="col-sm-2">
+            <input
+              class="form-control"
+              type="number"
+              name="dicepool"
+              id="dicepool"
+              value="10"
+            />
+          </div>
+          <div class="col-sm-1" style="padding-top: 6px;">
+            <label for="targetnumber">
+              <strong>TN:</strong>
+            </label>
+          </div>
+          <div class="col-sm-2">
+            <input
+              class="form-control"
+              type="number"
+              name="targetnumber"
+              id="targetnumber"
+              value="7"
+            />
+          </div>
+          <div class="col-sm-5"></div>
+        </fieldset>
 
-<form>
-<table class="hasborder">
-<tr class="hasborder"><td colspan="2">
-    <strong>Dice Pool:</strong> <input type="number" name="dicepool" value="10" >
-    <strong>TN:</strong> <input type="number" name="targetnumber" value="7">
-</td></tr>
-<tr><td class="leftheader">
-    <strong>Doubles:</strong>
-</td>
-<td>
-    10<input type="checkbox" name="double10" checked>
-    9<input type="checkbox" name="double9">
-    8<input type="checkbox" name="double8">
-    7<input type="checkbox" name="double7">
-    6<input type="checkbox" name="double6">
-    5<input type="checkbox" name="double5">
-    4<input type="checkbox" name="double4">
-    3<input type="checkbox" name="double3">
-    2<input type="checkbox" name="double2">
-    1<input type="checkbox" name="double1">
-</td></tr>
-<tr>
-<td></td>
-<td>
-    Ones Subtract <input type="checkbox" name="onessubtract" id="onessubtract"> 
-</td></tr>
-<tr class="topborder"><td class="leftheader">
-    <strong>Rerolls:</strong>
-</td>
-<td>
-    10<input type="checkbox" name="reroll10">
-    9<input type="checkbox" name="reroll9">
-    8<input type="checkbox" name="reroll8">
-    7<input type="checkbox" name="reroll7">
-    6<input type="checkbox" name="reroll6">
-    5<input type="checkbox" name="reroll5">
-    4<input type="checkbox" name="reroll4">
-    3<input type="checkbox" name="reroll3">
-    2<input type="checkbox" name="reroll2">
-    1<input type="checkbox" name="reroll1"><br>
-</td></tr>
-<tr>
-<td></td>
-<td>
-    Reroll once <input type="checkbox" name="rerollonce" id="rerollonce" checked> 
-    Reroll until gone <input type="checkbox" name="rerollforever" id="rerollforever">
-</td></tr>
-<tr class="hasborder"><td colspan="2">
-    <input type="button" name="roll" value="Roll" id="roll">
-</td></tr>
-</table>
-</form>
+        <div class="row">
+          <div class="topborder col-sm-2 leftheader">
+            <strong>Doubles:</strong>
+          </div>
 
-<p><strong>Result:</strong></p>
-<div class="clearable" id="result" role="status" aria-live="polite"></div>
-<div class="clearable" id="oldresults"></div>
-<button id="clear">Clear results</button>
+          <div class="topborder col-sm-10">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-primary active" id="double10_label">
+                <input
+                  type="checkbox"
+                  name="double10"
+                  id="double10"
+                  aria-labelledby="double10_label"
+                  checked
+                />
+                10
+              </label>
+              <label class="btn btn-primary" id="double9_label">
+                <input
+                  type="checkbox"
+                  name="double9"
+                  id="double9"
+                  aria-labelledby="double9_label"
+                />
+                9
+              </label>
+              <label class="btn btn-primary" id="double8_label">
+                <input
+                  type="checkbox"
+                  name="double8"
+                  id="double8"
+                  aria-labelledby="double8_label"
+                />
+                8
+              </label>
+              <label class="btn btn-primary" id="double7_label">
+                <input
+                  type="checkbox"
+                  name="double7"
+                  id="double7"
+                  aria-labelledby="double7_label"
+                />
+                7
+              </label>
+              <label class="btn btn-primary" id="double6_label">
+                <input
+                  type="checkbox"
+                  name="double6"
+                  id="double6"
+                  aria-labelledby="double6_label"
+                />
+                6
+              </label>
+              <label class="btn btn-primary" id="double5_label">
+                <input
+                  type="checkbox"
+                  name="double5"
+                  id="double5"
+                  aria-labelledby="double5_label"
+                />
+                5
+              </label>
+              <label class="btn btn-primary" id="double4_label">
+                <input
+                  type="checkbox"
+                  name="double4"
+                  id="double4"
+                  aria-labelledby="double4_label"
+                />
+                4
+              </label>
+              <label class="btn btn-primary" id="double3_label">
+                <input
+                  type="checkbox"
+                  name="double3"
+                  id="double3"
+                  aria-labelledby="double3_label"
+                />
+                3
+              </label>
+              <label class="btn btn-primary" id="double2_label">
+                <input
+                  type="checkbox"
+                  name="double2"
+                  id="double2"
+                  aria-labelledby="double2_label"
+                />
+                2
+              </label>
+              <label class="btn btn-primary" id="double1_label">
+                <input
+                  type="checkbox"
+                  name="double1"
+                  id="double1"
+                  aria-labelledby="double1_label"
+                />
+                1
+              </label>
+            </div>
+            <br />
+            <fieldset class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-light ">
+                Ones <span id="onesub">do not</span> Subtract
+                <input type="checkbox" name="onessubtract" id="onessubtract" />
+              </label>
+            </fieldset>
+          </div>
+        </div>
 
-<hr/>
+        <div class="row">
+          <div class="topborder col-sm-2 leftheader">
+            <strong>Rerolls:</strong>
+          </div>
 
-<h2>Verify rolled result</h2>
-<form>
-    <input type="text" value="paste gibberish here" name="gibberish" id="gibberish">
-    <input type="button" name="decode" value="Decode" id="decode">
-</form>
+          <div class="topborder col-sm-10">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-primary" id="reroll10_label">
+                <input
+                  type="checkbox"
+                  name="reroll10"
+                  id="reroll10"
+                  aria-labelledby="reroll10_label"
+                />
+                10
+              </label>
+              <label class="btn btn-primary" id="reroll9_label">
+                <input
+                  type="checkbox"
+                  name="reroll9"
+                  id="reroll9"
+                  aria-labelledby="reroll9_label"
+                />
+                9
+              </label>
+              <label class="btn btn-primary" id="reroll8_label">
+                <input
+                  type="checkbox"
+                  name="reroll8"
+                  id="reroll8"
+                  aria-labelledby="reroll8_label"
+                />
+                8
+              </label>
+              <label class="btn btn-primary" id="reroll7_label">
+                <input
+                  type="checkbox"
+                  name="reroll7"
+                  id="reroll7"
+                  aria-labelledby="reroll7_label"
+                />
+                7
+              </label>
+              <label class="btn btn-primary" id="reroll6_label">
+                <input
+                  type="checkbox"
+                  name="reroll6"
+                  id="reroll6"
+                  aria-labelledby="reroll6_label"
+                />
+                6
+              </label>
+              <label class="btn btn-primary" id="reroll5_label">
+                <input
+                  type="checkbox"
+                  name="reroll5"
+                  id="reroll5"
+                  aria-labelledby="reroll5_label"
+                />
+                5
+              </label>
+              <label class="btn btn-primary" id="reroll4_label">
+                <input
+                  type="checkbox"
+                  name="reroll4"
+                  id="reroll4"
+                  aria-labelledby="reroll4_label"
+                />
+                4
+              </label>
+              <label class="btn btn-primary" id="reroll3_label">
+                <input
+                  type="checkbox"
+                  name="reroll3"
+                  id="reroll3"
+                  aria-labelledby="reroll3_label"
+                />
+                3
+              </label>
+              <label class="btn btn-primary" id="reroll2_label">
+                <input
+                  type="checkbox"
+                  name="reroll2"
+                  id="reroll2"
+                  aria-labelledby="reroll2_label"
+                />
+                2
+              </label>
+              <label class="btn btn-primary" id="reroll1_label">
+                <input
+                  type="checkbox"
+                  name="reroll1"
+                  id="reroll1"
+                  aria-labelledby="reroll1_label"
+                />
+                1
+              </label>
+            </div>
+            <br />
+            <fieldset class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-light">
+                Reroll once
+                <input
+                  type="radio"
+                  name="rerolls"
+                  value="once"
+                  id="rerollonce"
+                />
+              </label>
+              <label class="btn btn-light active">
+                Reroll until gone
+                <input
+                  type="radio"
+                  name="rerolls"
+                  value="forever"
+                  id="rerollforever"
+                  checked
+                />
+              </label>
+            </fieldset>
+          </div>
+        </div>
+        <div class="topborder row">
+          <div class="col-sm-2"></div>
+          <input
+            class="col-sm-8 btn btn-success"
+            type="button"
+            name="roll"
+            value="Roll"
+            id="roll"
+          />
+          <div class="col-sm-2"></div>
+        </div>
+      </form>
 
-<p><strong>Result:</strong></p>
-<div id="decoded"></div>
+      <p><strong>Result:</strong></p>
+      <div class="clearable" id="result" role="status" aria-live="polite"></div>
+      <div class="clearable" id="oldresults"></div>
+      <button id="clear">Clear results</button>
 
-</body>
+      <hr />
+
+      <h2>Verify rolled result</h2>
+      <form>
+        <input
+          type="text"
+          value=""
+          placeholder="Paste gibberish here"
+          name="gibberish"
+          id="gibberish"
+        />
+        <input type="button" name="decode" value="Decode" id="decode" />
+      </form>
+
+      <p><strong>Result:</strong></p>
+      <div id="decoded"></div>
+    </div>
+
+    <hr />
+
+    <footer id="colinlinks">
+      <p class="titletopper">Colin's Ex3 Interactives:</p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-dice-roller/">
+          Dice Roller
+        </a>
+      </p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-battle-groups/">
+          Battle Group Generator
+        </a>
+      </p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-dice-tricks/">
+          Dice Trick Comparison
+        </a>
+      </p>
+      <p>
+        <a href="https://colin-fredericks.github.io/ex3-400-lunars/">
+          400 Lunars
+        </a>
+      </p>
+      <p>
+        <a href="https://strangercreations.wordpress.com">
+          Stranger Creations - NPCs and settings
+        </a>
+      </p>
+    </footer>
+  </body>
+  <script src="Ex3DiceRoll.js"></script>
 </html>

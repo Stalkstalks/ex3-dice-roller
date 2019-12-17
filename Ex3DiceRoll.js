@@ -15,6 +15,14 @@ $(document).ready(function() {
   });
 
   let onessubtract = $('#onessubtract');
+  onessubtract.on('click', function(e) {
+    console.log(e);
+    if (!e.target.checked) {
+      $('#onesub').show();
+    } else {
+      $('#onesub').hide();
+    }
+  });
   let oncebutton = $('#rerollonce');
   let foreverbutton = $('#rerollforever');
 

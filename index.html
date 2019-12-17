@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Ex3 Dice Roller</title>
-    <link rel="stylesheet" href="bootstrap.css" />
+    <link rel="stylesheet" href="bootstrap.custom.css" />
     <script src="jquery-3.4.1.min.js"></script>
     <script src="bootstrap.min.js"></script>
     <script language="javascript" src="lz-string.min.js"></script>
@@ -152,9 +152,9 @@
               </label>
             </div>
             <br />
-            <fieldset class="btn-group btn-group-toggle">
-              <label class="btn btn-secondary">
-                Ones Subtract
+            <fieldset class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-light ">
+                Ones <span id="onesub">do not</span> Subtract
                 <input type="checkbox" name="onessubtract" id="onessubtract" />
               </label>
             </fieldset>
@@ -261,7 +261,7 @@
             </div>
             <br />
             <fieldset class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-secondary">
+              <label class="btn btn-light">
                 Reroll once
                 <input
                   type="radio"
@@ -270,7 +270,7 @@
                   id="rerollonce"
                 />
               </label>
-              <label class="btn btn-secondary active">
+              <label class="btn btn-light active">
                 Reroll until gone
                 <input
                   type="radio"
@@ -284,15 +284,15 @@
           </div>
         </div>
         <div class="topborder row">
-          <div class="col-sm-1"></div>
+          <div class="col-sm-2"></div>
           <input
-            class="col-sm-10 btn btn-success"
+            class="col-sm-8 btn btn-success"
             type="button"
             name="roll"
             value="Roll"
             id="roll"
           />
-          <div class="col-sm-1"></div>
+          <div class="col-sm-2"></div>
         </div>
       </form>
 

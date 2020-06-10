@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   console.log('ready');
 
   let resultsArea = $('#result');
@@ -10,12 +10,12 @@ $(document).ready(function() {
   let options = {};
 
   // Clear old results off the screen.
-  $('#clear').on('click', function() {
+  $('#clear').on('click', function () {
     $('.clearable').empty();
   });
 
   let onessubtract = $('#onessubtract');
-  onessubtract.on('click', function(e) {
+  onessubtract.on('click', function (e) {
     console.log(e);
     if (!e.target.checked) {
       $('#onesub').show();
@@ -36,14 +36,14 @@ $(document).ready(function() {
     options.reroll.forever = true;
   }
 
-  oncebutton.on('change', function() {
+  oncebutton.on('change', function () {
     options.reroll = checkBoxChecker('once');
   });
-  foreverbutton.on('change', function() {
+  foreverbutton.on('change', function () {
     options.reroll = checkBoxChecker('forever');
   });
 
-  $('#roll').on('click', function() {
+  $('#roll').on('click', function () {
     let dicePool = $('input[name="dicepool"]').val();
     let targetNumber = $('input[name="targetnumber"]').val();
     let resultsArray = [];
@@ -134,7 +134,7 @@ $(document).ready(function() {
     encodedResult.prop('readonly', true);
     encodedResult.css('display', 'inline');
     encodedResult.val(encodedstring);
-    encodedResult.on('focus', function() {
+    encodedResult.on('focus', function () {
       $(this).select();
     });
 
@@ -158,7 +158,7 @@ $(document).ready(function() {
       .prependTo(oldResultsArea);
 
     // Don't need to have the gibberish code there all the time.
-    $('.showvcode' + vcounter).on('click', function() {
+    $('.showvcode' + vcounter).on('click', function () {
       let myClass = this.className;
       let codeNumber = myClass.split(/\s+/)[1].replace('showvcode', '');
       $('.vcode' + codeNumber).slideToggle('fast');
@@ -170,7 +170,7 @@ $(document).ready(function() {
   });
 
   // Undo the gibberish code to show the original roll.
-  $('#decode').on('click', function() {
+  $('#decode').on('click', function () {
     let encodedString = $('#gibberish').val();
     let decodedString = LZString.decompressFromUTF16(encodedString);
     decodeArea.prepend('<p>' + decodedString + '</p>');

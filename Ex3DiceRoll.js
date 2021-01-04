@@ -47,6 +47,7 @@ $(document).ready(function () {
     let dicePool = $('input[name="dicepool"]').val();
     let targetNumber = $('input[name="targetnumber"]').val();
     let resultsArray = [];
+    let bucketsArray = [0,0,0,0,0,0,0,0,0,0,0]
     let resultsString = '';
     let successes = 0;
     let botched = false;
@@ -73,6 +74,7 @@ $(document).ready(function () {
       let thisDie = rollDie(options, targetNumber, doublesArray, 0);
       console.log(thisDie);
       resultsArray.push(thisDie.result);
+      bucketsArray[thisDie.result] = bucketsArray[thisDie.result]+1;
       if (thisDie.result == 1 && onesSubtract) {
         successes -= 1;
       }
@@ -88,7 +90,8 @@ $(document).ready(function () {
       }
     }
 
-    resultsString = resultsArray.join(',');
+    //resultsString = resultsArray.join(',');
+    resultsString = bucketsArray.join(',');
 
     if (botched) {
       resultsString = '<strong>Botch!</strong> Roll = ' + resultsString;

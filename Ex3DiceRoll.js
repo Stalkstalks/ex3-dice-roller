@@ -96,8 +96,8 @@ $(document).ready(function () {
       if(bucketsArray[i] > 0)
       {
         if(resultsString.length > 0)
-          resultsString += ','
-        resultsString += bucketsArray[i] + " "+i+"s";
+          resultsString += ', '
+        resultsString += bucketsArray[i] + " x"+i+"s";
       }
     }
 

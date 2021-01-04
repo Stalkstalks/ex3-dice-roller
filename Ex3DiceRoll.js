@@ -97,7 +97,7 @@ $(document).ready(function () {
       {
         if(resultsString.length > 0)
           resultsString += ', '
-        resultsString += bucketsArray[i] + " "+i+"s";
+        resultsString += "<strong>" + bucketsArray[i] + "</strong> "+i+"s";
       }
     }
 

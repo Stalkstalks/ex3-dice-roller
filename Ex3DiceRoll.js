@@ -78,6 +78,8 @@ $(document).ready(function () {
       }
       successes += thisDie.bonus;
     }
+    
+    resultsArray.sort(function(a, b){return b-a});
 
     // Botching: No successes and at least one 1 showing.
     if (successes <= 0) {

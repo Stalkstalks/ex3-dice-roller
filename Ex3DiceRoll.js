@@ -91,7 +91,26 @@ $(document).ready(function () {
     }
 
     //resultsString = resultsArray.join(',');
-    resultsString = bucketsArray.join(',');
+    if(bucketsArray[10] > 0)
+      resultsString += " [10]x" + bucketsArray[10];
+    if(bucketsArray[9] > 0)
+      resultsString += " [9]x" + bucketsArray[9];
+    if(bucketsArray[8] > 0)
+      resultsString += " [8]x" + bucketsArray[8];
+    if(bucketsArray[7] > 0)
+      resultsString += " [7]x" + bucketsArray[7];
+    if(bucketsArray[6] > 0)
+      resultsString += " [6]x" + bucketsArray[6];
+    if(bucketsArray[5] > 0)
+      resultsString += " [5]x" + bucketsArray[5];
+    if(bucketsArray[4] > 0)
+      resultsString += " [4]x" + bucketsArray[4];
+    if(bucketsArray[3] > 0)
+      resultsString += " [3]x" + bucketsArray[3];
+    if(bucketsArray[2] > 0)
+      resultsString += " [2]x" + bucketsArray[2];
+    if(bucketsArray[1] > 0)
+      resultsString += " [1]x" + bucketsArray[1];
 
     if (botched) {
       resultsString = '<strong>Botch!</strong> Roll = ' + resultsString;

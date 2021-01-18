@@ -39,12 +39,12 @@ $(document).ready(function () {
   }
 
   oncebutton.on('change', function () {
-    options.reroll = checkBoxChecker('once',options.rerollForeverArray);
+    options.reroll = checkBoxChecker('once',options.rerollOnceArray);
     let rerollOnceArray = getDiceChecks('reroll');
     options.rerollOnceArray = rerollOnceArray;
   });
   foreverbutton.on('change', function () {
-    options.reroll = checkBoxChecker('forever',options.rerollOnceArray);
+    options.reroll = checkBoxChecker('forever',options.rerollForeverArray);
     let rerollForeverArray = getDiceChecks('reroll');
     options.rerollForeverArray = rerollForeverArray;
   });

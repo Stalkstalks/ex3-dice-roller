@@ -39,12 +39,12 @@ $(document).ready(function () {
   }
 
   oncebutton.on('change', function () {
-    options.reroll = checkBoxChecker('once');
+    options.reroll = checkBoxChecker('once',options.rerollForeverArray);
     let rerollOnceArray = getDiceChecks('reroll');
     options.rerollOnceArray = rerollOnceArray;
   });
   foreverbutton.on('change', function () {
-    options.reroll = checkBoxChecker('forever');
+    options.reroll = checkBoxChecker('forever',options.rerollOnceArray);
     let rerollForeverArray = getDiceChecks('reroll');
     options.rerollForeverArray = rerollForeverArray;
   });
@@ -279,7 +279,7 @@ $(document).ready(function () {
     return result;
   }
   
-  function checkBoxChecker(box) {
+  function checkBoxChecker(box,checkedArray) {
     let once = false;
     let forever = false;
 
@@ -289,7 +289,7 @@ $(document).ready(function () {
         once = true;
         for (let i = 1; i <= 10; i++) {
           let thistype = "reroll" + i;
-          $('input[name="' + thistype + '"]').prop(':checked',options.rerollOnceArray.indexOf(i) == -1)
+          $('input[name="' + thistype + '"]').prop(':checked',checkedArray.indexOf(i) == -1)
         }
         console.log('reroll once');
       }
@@ -299,7 +299,7 @@ $(document).ready(function () {
         forever = true;
         for (let i = 1; i <= 10; i++) {
           let thistype = "reroll" + i;
-          $('input[name="' + thistype + '"]').prop(':checked',options.rerollForeverArray.indexOf(i) == -1)
+          $('input[name="' + thistype + '"]').prop(':checked',checkedArray.indexOf(i) == -1)
         }
         console.log('reroll forever');
       }

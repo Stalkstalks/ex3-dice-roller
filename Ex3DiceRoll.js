@@ -287,22 +287,18 @@ $(document).ready(function () {
       if (oncebutton.is(':checked')) {
         foreverbutton.prop('checked', false);
         once = true;
-        for (let i = 1; i <= 10; i++) {
-          let thistype = "reroll" + i;
-          $('input[name="' + thistype + '"]').prop(':checked',checkedArray.indexOf(i) == -1)
-        }
         console.log('reroll once');
       }
     } else {
       if (foreverbutton.is(':checked')) {
         oncebutton.prop('checked', false);
         forever = true;
-        for (let i = 1; i <= 10; i++) {
-          let thistype = "reroll" + i;
-          $('input[name="' + thistype + '"]').prop(':checked',checkedArray.indexOf(i) == -1)
-        }
         console.log('reroll forever');
       }
+    }
+    
+    for (let i = 1; i <= 10; i++) {
+      $('[name="reroll' + i + '"]').prop('checked',checkedArray.indexOf(i) != -1)
     }
 
     return { once: once, forever: forever };

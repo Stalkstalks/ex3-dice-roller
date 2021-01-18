@@ -38,9 +38,13 @@ $(document).ready(function () {
 
   oncebutton.on('change', function () {
     options.reroll = checkBoxChecker('once');
+    let rerollOnceArray = getDiceChecks('reroll');
+    options.rerollOnceArray = rerollOnceArray;
   });
   foreverbutton.on('change', function () {
     options.reroll = checkBoxChecker('forever');
+    let rerollForeverArray = getDiceChecks('reroll');
+    options.rerollForeverArray = rerollForeverArray;
   });
 
   $('#roll').on('click', function () {
@@ -65,8 +69,26 @@ $(document).ready(function () {
     let doublesArray = getDiceChecks('double');
     options.doublesArray = doublesArray;
 
-    let rerollArray = getDiceChecks('reroll');
-    options.rerollArray = rerollArray;
+    if (options.reroll.once === true)
+    {
+      let rerollOnceArray = getDiceChecks('reroll');
+      options.rerollOnceArray = rerollOnceArray;
+    }
+    
+    if (options.reroll.once === true)
+    {
+      let rerollForeverArray = getDiceChecks('reroll');
+      options.rerollForeverArray = rerollForeverArray;
+      let resultsAllowedArray = [];
+      for(i = 1; i < 11; i++)
+      {
+        if (rerollForeverArray.indexOf(i) == -1)
+        {
+          resultsAllowedArray.push(i);
+        }
+      }
+      options.resultsAllowedArray = resultsAllowedArray;
+    }
 
     console.log('rolling dice');
     // Make the array that has all our raw dice roll results.
@@ -194,8 +216,13 @@ $(document).ready(function () {
   // Returns a single die result.
   function rollDie(options, targetNumber, doublesArray, bonus) {
     console.log(options);
-    let result = Math.ceil(Math.random() * 10);
+    
+    let result = options.resultsAllowedArray[Math.floor(Math.random() * options.resultsAllowedArray.length)];
 
+    if (options.rerollOnceArray.indexOf(result) != -1) {
+      result = options.resultsAllowedArray[Math.floor(Math.random() * options.resultsAllowedArray.length)];
+    }
+    
     // Need to keep successes on rerolls!
     if (result >= targetNumber) {
       bonus += 1;
@@ -203,8 +230,11 @@ $(document).ready(function () {
     if (doublesArray.indexOf(result) != -1) {
       bonus += 1;
     }
-
+    
+    return { result: result, bonus: bonus };
+    
     // Check for rerolls. Two different types.
+    /*
     if (options.reroll.once === true) {
       // Reroll once? No recursion.
       if (options.rerollArray.indexOf(result) != -1) {
@@ -229,7 +259,7 @@ $(document).ready(function () {
     } else {
       // No rerolls.
       return { result: result, bonus: bonus };
-    }
+    }*/
   }
 
   // Returns an array saying which numbers have been checked off.

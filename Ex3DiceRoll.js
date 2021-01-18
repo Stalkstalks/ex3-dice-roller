@@ -75,20 +75,21 @@ $(document).ready(function () {
       options.rerollOnceArray = rerollOnceArray;
     }
     
-    if (options.reroll.once === true)
+    if (options.reroll.forever === true)
     {
       let rerollForeverArray = getDiceChecks('reroll');
       options.rerollForeverArray = rerollForeverArray;
-      let resultsAllowedArray = [];
-      for(i = 1; i < 11; i++)
-      {
-        if (rerollForeverArray.indexOf(i) == -1)
-        {
-          resultsAllowedArray.push(i);
-        }
-      }
-      options.resultsAllowedArray = resultsAllowedArray;
     }
+    
+    let resultsAllowedArray = [];
+    for(i = 1; i < 11; i++)
+    {
+      if (rerollForeverArray.indexOf(i) == -1)
+      {
+        resultsAllowedArray.push(i);
+      }
+    }
+    options.resultsAllowedArray = resultsAllowedArray;
 
     console.log('rolling dice');
     // Make the array that has all our raw dice roll results.

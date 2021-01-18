@@ -39,14 +39,14 @@ $(document).ready(function () {
   }
 
   oncebutton.on('change', function () {
-    options.reroll = checkBoxChecker('once',options.rerollOnceArray);
-    let rerollOnceArray = getDiceChecks('reroll');
-    options.rerollOnceArray = rerollOnceArray;
-  });
-  foreverbutton.on('change', function () {
-    options.reroll = checkBoxChecker('forever',options.rerollForeverArray);
     let rerollForeverArray = getDiceChecks('reroll');
     options.rerollForeverArray = rerollForeverArray;
+    options.reroll = checkBoxChecker('once',options.rerollOnceArray);
+  });
+  foreverbutton.on('change', function () {
+    let rerollOnceArray = getDiceChecks('reroll');
+    options.rerollOnceArray = rerollOnceArray;
+    options.reroll = checkBoxChecker('forever',options.rerollForeverArray);
   });
 
   $('#roll').on('click', function () {

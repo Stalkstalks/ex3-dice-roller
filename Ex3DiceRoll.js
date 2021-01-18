@@ -8,6 +8,8 @@ $(document).ready(function () {
   let lastDateStamp = 'Never';
   let lastSuccesses = 'n/a';
   let options = {};
+  options.rerollOnceArray = [];
+  options.rerollForeverArray = [];
 
   // Clear old results off the screen.
   $('#clear').on('click', function () {
@@ -276,7 +278,7 @@ $(document).ready(function () {
 
     return result;
   }
-
+  
   function checkBoxChecker(box) {
     let once = false;
     let forever = false;
@@ -285,12 +287,20 @@ $(document).ready(function () {
       if (oncebutton.is(':checked')) {
         foreverbutton.prop('checked', false);
         once = true;
+        for (let i = 1; i <= 10; i++) {
+          let thistype = "reroll" + i;
+          $('input[name="' + thistype + '"]').prop(':checked',options.rerollOnceArray.indexOf(i) == -1)
+        }
         console.log('reroll once');
       }
     } else {
       if (foreverbutton.is(':checked')) {
         oncebutton.prop('checked', false);
         forever = true;
+        for (let i = 1; i <= 10; i++) {
+          let thistype = "reroll" + i;
+          $('input[name="' + thistype + '"]').prop(':checked',options.rerollForeverArray.indexOf(i) == -1)
+        }
         console.log('reroll forever');
       }
     }

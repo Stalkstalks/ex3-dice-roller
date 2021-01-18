@@ -39,14 +39,20 @@ $(document).ready(function () {
   }
 
   oncebutton.on('change', function () {
-    let rerollForeverArray = getDiceChecks('reroll');
+    if (oncebutton.is(':checked')) {
+      options.reroll.once = true;
+    }
+    /*let rerollForeverArray = getDiceChecks('reroll');
     options.rerollForeverArray = rerollForeverArray;
-    options.reroll = checkBoxChecker('once',options.rerollOnceArray);
+    options.reroll = checkBoxChecker('once',options.rerollOnceArray);*/
   });
   foreverbutton.on('change', function () {
-    let rerollOnceArray = getDiceChecks('reroll');
+    if (foreverbutton.is(':checked')) {
+      options.reroll.forever = true;
+    }
+    /*let rerollOnceArray = getDiceChecks('reroll');
     options.rerollOnceArray = rerollOnceArray;
-    options.reroll = checkBoxChecker('forever',options.rerollForeverArray);
+    options.reroll = checkBoxChecker('forever',options.rerollForeverArray);*/
   });
 
   $('#roll').on('click', function () {
@@ -73,13 +79,13 @@ $(document).ready(function () {
 
     if (options.reroll.once === true)
     {
-      let rerollOnceArray = getDiceChecks('reroll');
+      let rerollOnceArray = getDiceChecks('rerollonce');
       options.rerollOnceArray = rerollOnceArray;
     }
     
     if (options.reroll.forever === true)
     {
-      let rerollForeverArray = getDiceChecks('reroll');
+      let rerollForeverArray = getDiceChecks('rerollall');
       options.rerollForeverArray = rerollForeverArray;
     }
     
@@ -279,7 +285,7 @@ $(document).ready(function () {
     return result;
   }
   
-  function checkBoxChecker(box,checkedArray) {
+  /*function checkBoxChecker(box,checkedArray) {
     let once = false;
     let forever = false;
 
@@ -297,10 +303,6 @@ $(document).ready(function () {
       }
     }
     
-    for (let i = 1; i <= 10; i++) {
-      $('[name="reroll' + i + '"]').prop('checked',checkedArray.indexOf(i) != -1)
-    }
-
     return { once: once, forever: forever };
-  }
+  }*/
 });

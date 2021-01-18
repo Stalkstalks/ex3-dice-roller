@@ -84,7 +84,7 @@ $(document).ready(function () {
     let resultsAllowedArray = [];
     for(i = 1; i < 11; i++)
     {
-      if (rerollForeverArray.indexOf(i) == -1)
+      if (options.rerollForeverArray.indexOf(i) == -1)
       {
         resultsAllowedArray.push(i);
       }

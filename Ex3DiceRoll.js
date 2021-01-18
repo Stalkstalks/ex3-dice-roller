@@ -50,6 +50,9 @@ $(document).ready(function () {
 
     let rerollOnceArray = getDiceChecks('rerollonce');
     options.rerollOnceArray = rerollOnceArray;
+    
+    let rerollOnceCount = $('input[name="rerollnumber"]').val();  
+    options.rerollOnceCount = rerollOnceCount;
 
     let rerollForeverArray = getDiceChecks('rerollall');
     options.rerollForeverArray = rerollForeverArray;
@@ -193,8 +196,9 @@ $(document).ready(function () {
     
     let result = options.resultsAllowedArray[Math.floor(Math.random() * options.resultsAllowedArray.length)];
 
-    if (options.rerollOnceArray.indexOf(result) != -1) {
+    if (options.rerollOnceArray.indexOf(result) != -1 && options.rerollOnceCount > 0) {
       result = options.resultsAllowedArray[Math.floor(Math.random() * options.resultsAllowedArray.length)];
+      options.rerollOnceCount--;
     }
     
     // Need to keep successes on rerolls!

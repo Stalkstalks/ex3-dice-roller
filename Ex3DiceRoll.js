@@ -25,35 +25,6 @@ $(document).ready(function () {
       $('#onesub').hide();
     }
   });
-  let oncebutton = $('#rerollonce');
-  let foreverbutton = $('#rerollforever');
-
-  // Rerolling a number "forever" means until no dice show that number.
-  // Need to check as soon as we get to the page, and then set based on user selections.
-  options.reroll = { once: false, forever: false };
-  if (oncebutton.is(':checked')) {
-    options.reroll.once = true;
-  }
-  if (foreverbutton.is(':checked')) {
-    options.reroll.forever = true;
-  }
-
-  oncebutton.on('change', function () {
-    if (oncebutton.is(':checked')) {
-      options.reroll.once = true;
-    }
-    /*let rerollForeverArray = getDiceChecks('reroll');
-    options.rerollForeverArray = rerollForeverArray;
-    options.reroll = checkBoxChecker('once',options.rerollOnceArray);*/
-  });
-  foreverbutton.on('change', function () {
-    if (foreverbutton.is(':checked')) {
-      options.reroll.forever = true;
-    }
-    /*let rerollOnceArray = getDiceChecks('reroll');
-    options.rerollOnceArray = rerollOnceArray;
-    options.reroll = checkBoxChecker('forever',options.rerollForeverArray);*/
-  });
 
   $('#roll').on('click', function () {
     let dicePool = $('input[name="dicepool"]').val();
@@ -77,17 +48,11 @@ $(document).ready(function () {
     let doublesArray = getDiceChecks('double');
     options.doublesArray = doublesArray;
 
-    if (options.reroll.once === true)
-    {
-      let rerollOnceArray = getDiceChecks('rerollonce');
-      options.rerollOnceArray = rerollOnceArray;
-    }
-    
-    if (options.reroll.forever === true)
-    {
-      let rerollForeverArray = getDiceChecks('rerollall');
-      options.rerollForeverArray = rerollForeverArray;
-    }
+    let rerollOnceArray = getDiceChecks('rerollonce');
+    options.rerollOnceArray = rerollOnceArray;
+
+    let rerollForeverArray = getDiceChecks('rerollall');
+    options.rerollForeverArray = rerollForeverArray;
     
     let resultsAllowedArray = [];
     for(i = 1; i < 11; i++)
@@ -242,33 +207,6 @@ $(document).ready(function () {
     
     return { result: result, bonus: bonus };
     
-    // Check for rerolls. Two different types.
-    /*
-    if (options.reroll.once === true) {
-      // Reroll once? No recursion.
-      if (options.rerollArray.indexOf(result) != -1) {
-        let newResult = Math.ceil(Math.random() * 10);
-        if (newResult >= targetNumber) {
-          bonus += 1;
-        }
-        if (doublesArray.indexOf(newResult) != -1) {
-          bonus += 1;
-        }
-        return { result: newResult, bonus: bonus };
-      } else {
-        return { result: result, bonus: bonus };
-      }
-    } else if (options.reroll.forever === true) {
-      // Reroll forever? Uses recursion.
-      if (options.rerollArray.indexOf(result) != -1) {
-        return rollDie(options, targetNumber, doublesArray, bonus);
-      } else {
-        return { result: result, bonus: bonus };
-      }
-    } else {
-      // No rerolls.
-      return { result: result, bonus: bonus };
-    }*/
   }
 
   // Returns an array saying which numbers have been checked off.
@@ -284,25 +222,5 @@ $(document).ready(function () {
 
     return result;
   }
-  
-  /*function checkBoxChecker(box,checkedArray) {
-    let once = false;
-    let forever = false;
 
-    if (box == 'once') {
-      if (oncebutton.is(':checked')) {
-        foreverbutton.prop('checked', false);
-        once = true;
-        console.log('reroll once');
-      }
-    } else {
-      if (foreverbutton.is(':checked')) {
-        oncebutton.prop('checked', false);
-        forever = true;
-        console.log('reroll forever');
-      }
-    }
-    
-    return { once: once, forever: forever };
-  }*/
 });

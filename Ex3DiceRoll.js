@@ -33,6 +33,7 @@ $(document).ready(function () {
     let bucketsArray = [0,0,0,0,0,0,0,0,0,0,0]
     let resultsString = '';
     let successes = 0;
+    let failed = 0;
     let botched = false;
     let onesSubtract = false;
     let datestamp = new Date();
@@ -78,6 +79,8 @@ $(document).ready(function () {
         successes -= 1;
       }
       successes += thisDie.bonus;
+      if (thisDie.bonus == 0)
+        failed += 1;
     }
     
     resultsArray.sort(function(a, b){return b-a});
@@ -109,14 +112,18 @@ $(document).ready(function () {
         resultsString =
           '<strong>' +
           successes +
-          ' success.</strong> Roll = ' +
+          ' success, ' +
+          failed +
+          ' failed dice.</strong> Roll = ' +
           resultsString +
           '. ';
       } else {
         resultsString =
           '<strong>' +
           successes +
-          ' successes.</strong> Roll = ' +
+          ' successes, ' +
+          failed +
+          ' failed dice.</strong> Roll = ' +
           resultsString +
           '. ';
       }
